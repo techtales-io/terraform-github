@@ -20,9 +20,10 @@ terraform {
 
 locals {
   users = {
-    "***REMOVED***"          = "jazzlyn"
-    "***REMOVED***"            = "tyriis"
+    "***REMOVED***" = "jazzlyn"
+    "***REMOVED***"   = "tyriis"
   }
+  collaborators = {}
 }
 
 module "organization" {
@@ -43,6 +44,7 @@ module "repositories" {
   depends_on = [
     module.teams
   ]
-  teams = module.teams
-  users = local.users
+  teams         = module.teams
+  users         = local.users
+  collaborators = local.collaborators
 }

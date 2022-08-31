@@ -3,10 +3,11 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 module "home-infra" {
-  source   = "./home-infra/"
-  teams    = var.teams
-  users    = var.users
-  defaults = local.defaults
+  source        = "./home-infra/"
+  teams         = var.teams
+  users         = var.users
+  collaborators = var.collaborators
+  defaults      = local.defaults
 }
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -14,8 +15,9 @@ module "home-infra" {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 module "playground" {
-  source   = "./playground/"
-  teams    = var.teams
-  users    = var.users
-  defaults = local.defaults
+  source        = "./playground/"
+  teams         = var.teams
+  users         = var.users
+  collaborators = var.collaborators
+  defaults      = local.defaults
 }

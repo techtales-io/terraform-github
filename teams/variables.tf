@@ -4,5 +4,5 @@
 
 variable "users" {
   description = "all users of the organization"
-  type        = any
+  type        = map(string)
 }

@@ -29,8 +29,13 @@ module "test" {
   ]
   # maintain_teams = []
 
-  # individual maintainer(s)
-  # maintain_collaborators = []
+  # individual collaborators
+  # pull_collaborators = []
+  # triage_collaborators = []
+  # push_collaborators = distinct(concat(
+  #   [for user in var.collaborators["group_name"] : user],
+  #   ["some_github_user"],
+  # ))
 
   # autolink (jira reference links)
   autolink_references = var.defaults.autolink_references

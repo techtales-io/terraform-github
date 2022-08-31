@@ -9,5 +9,11 @@ variable "teams" {
 
 variable "users" {
   description = "The organisation users."
-  type        = any
+  type        = map(string)
+}
+
+variable "collaborators" {
+  description = "The external collaborators."
+  default     = {}
+  type        = map(map(string))
 }

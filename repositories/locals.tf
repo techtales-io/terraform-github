@@ -20,7 +20,7 @@ locals {
     default_branch         = "main"
     gitignore_template     = ""
     license_template       = ""
-    topics = []
+    topics                 = []
     issue_labels = [
       #{
       #  name  = "major",
