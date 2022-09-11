@@ -49,15 +49,15 @@ jobs:
       - name: Setup YQ
         run: |
           wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
-          tar xz && mv yq_linux_amd64 /usr/bin/yq
+          tar xz && mv yq_linux_amd64 yq
 
       - name: Add secrets to ENV
         run: |
-          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "AWS_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | yq '.AWS_ACCESS_KEY')" >> $GITHUB_ENV
-          echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
-          echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
-          echo "GITHUB_APP_PEM_FILE=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_PEM_FILE')" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
+          echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
+          echo "GITHUB_APP_PEM_FILE=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_PEM_FILE')" >> $GITHUB_ENV
         shell: bash
 
       - name: Run Terrascan
