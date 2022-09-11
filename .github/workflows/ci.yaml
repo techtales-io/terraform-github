@@ -5,12 +5,22 @@ on:
   pull_request:
   push: { branches: [main] }
 
-permissions: read-all
-
 jobs:
   terraform:
     permissions:
+      # actions: read|write|none
+      # checks: read|write|none
+      contents: read
+      # deployments: read|write|none
       id-token: write
+      # issues: read|write|none
+      # discussions: read|write|none
+      # packages: read|write|none
+      # pages: read|write|none
+      pull-requests: read
+      # repository-projects: read|write|none
+      # security-events: read|write|n
+      # statuses: read
     runs-on: ubuntu-latest
     env:
       working-directory: terraform
