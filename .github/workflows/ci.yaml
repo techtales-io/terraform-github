@@ -5,9 +5,12 @@ on:
   pull_request:
   push: { branches: [main] }
 
+permissions: read-all
+
 jobs:
   terraform:
-    permissions: read-all
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
     env:
       working-directory: terraform
