@@ -54,7 +54,7 @@ jobs:
       - name: Add secrets to ENV
         run: |
           echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "AWS_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
           echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
           echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
           echo "GITHUB_APP_PEM_FILE=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_PEM_FILE')" >> $GITHUB_ENV
