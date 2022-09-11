@@ -12,6 +12,7 @@ module "test" {
   homepage_url = ""
   extra_topics = [
     "test",
+    "test2",
   ]
 
   defaults             = var.defaults.private

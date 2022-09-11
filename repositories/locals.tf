@@ -16,7 +16,7 @@ locals {
     allow_auto_merge       = false
     delete_branch_on_merge = true
     has_downloads          = false
-    auto_init              = true
+    auto_init              = false
     default_branch         = "main"
     gitignore_template     = ""
     license_template       = ""
@@ -35,6 +35,17 @@ locals {
     visibility = "public"
   })
 
+  branch_protection = [
+    {
+      branch = "main"
+      required_pull_request_reviews = {
+        dismiss_stale_reviews           = true
+        required_approving_review_count = 1
+      }
+      enforce_admins = true
+    }
+  ]
+
   # set autolinks from jirakeys.yaml
   # add additional keys to yaml file
   jirakeys = fileexists("${path.module}/jirakeys.yaml") ? yamldecode(file("${path.module}/jirakeys.yaml")).keys : []
@@ -50,5 +61,6 @@ locals {
     private             = local.private
     public              = local.public
     autolink_references = local.autolink_references
+    branch_protection   = local.branch_protection
   }
 }
