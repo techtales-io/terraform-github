@@ -38,6 +38,26 @@ jobs:
           workload_identity_provider: '***REMOVED***'
           service_account: '***REMOVED***'
 
+      # https://github.com/mdgreenwald/mozilla-sops-action
+      - name: Setup SOPS
+        uses: mdgreenwald/mozilla-sops-action@v1.2.0
+        with:
+          version: latest
+        id: install
+
+      # https://github.com/marketplace/actions/setup-yq
+      - name: Setup YQ
+        uses: chrisdickinson/setup-yq@v1.0.0
+
+      - name: Add secrets to ENV
+        run: |
+          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | yq '.AWS_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
+          echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
+          echo "GITHUB_APP_PEM_FILE=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_PEM_FILE')" >> $GITHUB_ENV
+        shell: bash
+
       - name: Run Terrascan
         id: terrascan
         uses: tenable/terrascan-action@main
@@ -99,26 +119,6 @@ jobs:
           commenter_exitcode: ${{ steps.validate.outputs.exitcode }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      # https://github.com/mdgreenwald/mozilla-sops-action
-      - name: Setup SOPS
-        uses: mdgreenwald/mozilla-sops-action@v1.2.0
-        with:
-          version: latest
-        id: install
-
-      # https://github.com/marketplace/actions/setup-yq
-      - name: Setup YQ
-        uses: chrisdickinson/setup-yq@v1.0.0
-
-      - name: Add secrets to ENV
-        run: |
-          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "AWS_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | yq '.AWS_ACCESS_KEY')" >> $GITHUB_ENV
-          echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
-          echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
-          echo "GITHUB_APP_PEM_FILE=$(sops -d 'secrets.sops.yaml' | yq '.GITHUB_APP_PEM_FILE')" >> $GITHUB_ENV
-        shell: bash
 
       - name: Terraform Plan
         id: plan
