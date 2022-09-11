@@ -47,7 +47,9 @@ jobs:
 
       # https://github.com/marketplace/actions/setup-yq
       - name: Setup YQ
-        uses: chrisdickinson/setup-yq@v1.0.0
+        run: |
+          wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
+          tar xz && mv yq_linux_amd64 /usr/bin/yq
 
       - name: Add secrets to ENV
         run: |
