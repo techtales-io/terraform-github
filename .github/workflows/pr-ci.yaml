@@ -1,93 +1,113 @@
 ---
-name: "GitHub Actions Example"
+name: "pr-ci"
 
+# set events for job to trigger from
 on:
   pull_request:
   push: { branches: [main] }
 
 jobs:
   terraform:
+    # set permissions for job
     permissions:
-      # actions: read|write|none
-      # checks: read|write|none
       contents: read
-      # deployments: read|write|none
       id-token: write
-      # issues: read|write|none
-      # discussions: read|write|none
-      # packages: read|write|none
-      # pages: read|write|none
       pull-requests: read
-      # repository-projects: read|write|none
-      # security-events: read|write|n
-      # statuses: read
+
+    # set runner for job to run on
     runs-on:
       - self-hosted
       - home-infra
+
+    # set envs available to all steps
     env:
       working-directory: terraform
-      # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       TF_IN_AUTOMATION: true
+
     steps:
-      - name: Check out code
+      # https://github.com/marketplace/actions/checkout
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      # https://github.com/google-github-actions/auth
-      - name: 'Authenticate to Google Cloud'
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # SETUP STUFF
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      # https://github.com/marketplace/actions/authenticate-to-google-cloud
+      - name: Authenticate to Google Cloud
         id: 'auth'
         uses: 'google-github-actions/auth@v0.4.0'
         with:
           workload_identity_provider: '***REMOVED***'
           service_account: '***REMOVED***'
-          token_format: 'access_token'
 
-      # https://github.com/mdgreenwald/mozilla-sops-action
+      # https://github.com/marketplace/actions/sops-binary-installer
       - name: Setup SOPS
+        id: install
         uses: mdgreenwald/mozilla-sops-action@v1.2.0
         with:
           version: latest
-        id: install
 
-      # https://github.com/marketplace/actions/setup-yq
       - name: Setup YQ
         run: |
           wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
           tar xz && mv yq_linux_amd64 yq
 
+      # https://github.com/marketplace/actions/setup-node-js-environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.4.1
+        with:
+          node-version: 16
+
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # ADD SECRETS TO ENV
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
       - name: Add secrets to ENV
+        shell: bash
         run: |
           echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
           echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
           echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
           echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
           echo "GITHUB_APP_PEM_FILE=\"$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_PEM_FILE')\"" >> $GITHUB_ENV
-        shell: bash
 
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # PERFORM TERRASCAN
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      # https://github.com/marketplace/actions/terrascan-iac-scanner
       - name: Run Terrascan
         id: terrascan
-        uses: tenable/terrascan-action@main
+        uses: tenable/terrascan-action@v1.4.1
         with:
           iac_type: 'terraform'
           iac_version: 'v14'
           policy_type: 'github'
           only_warn: true
 
-      - uses: hashicorp/setup-terraform@v2
+      # https://github.com/marketplace/actions/hashicorp-setup-terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.0
         with:
           terraform_version: 1.2.3
 
-      - name: Terraform Format
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # PERFORM TERRAFORM FMT AND POST OUTCOME
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      - name: Terraform fmt
         id: fmt
         run: terraform fmt -check -recursive
         continue-on-error: true
 
-      - name: Terraform Format Out
+      - name: Terraform fmt output
         run: echo ${{steps.fmt.outcome}}
 
       # https://github.com/marketplace/actions/terraform-pr-commenter
-      - name: Post Format
+      - name: Post fmt outcome
         if: always() && github.ref != 'refs/heads/main' && (steps.fmt.outcome == 'success' || steps.fmt.outcome == 'failure')
-        uses: robburger/terraform-pr-commenter@v1
+        uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: fmt
           commenter_input: ${{ format('{0}{1}', steps.fmt.outputs.stdout, steps.fmt.outputs.stderr) }}
@@ -95,14 +115,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Terraform Init
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # PERFORM TERRAFORM INIT AND POST OUTCOME
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      - name: Terraform init
         id: init
         run: terraform init
 
       # https://github.com/marketplace/actions/terraform-pr-commenter
-      - name: Post Init
+      - name: Post init outcome
         if: always() && github.ref != 'refs/heads/main' && (steps.init.outcome == 'success' || steps.init.outcome == 'failure')
-        uses: robburger/terraform-pr-commenter@v1
+        uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: init
           commenter_input: ${{ format('{0}{1}', steps.init.outputs.stdout, steps.init.outputs.stderr) }}
@@ -110,14 +134,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Terraform Validate
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # PERFORM TERRAFORM VALIDATE AND POST OUTCOME
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      - name: Terraform validate
         id: validate
         run: terraform validate
 
       # https://github.com/marketplace/actions/terraform-pr-commenter
-      - name: Post Validate
+      - name: Post validate outcome
         if: always() && github.ref != 'refs/heads/master' && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure')
-        uses: robburger/terraform-pr-commenter@v1
+        uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: validate
           commenter_input: ${{ format('{0}{1}', steps.validate.outputs.stdout, steps.validate.outputs.stderr) }}
@@ -125,14 +153,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Terraform Plan
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # PERFORM TERRAFORM PLAN AND POST OUTCOME
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+      - name: Terraform plan
         id: plan
         run: terraform plan -out workspace.plan
 
       # https://github.com/marketplace/actions/terraform-pr-commenter
-      - name: Post Plan
+      - name: Post plan outcome
         if: always() && github.ref != 'refs/heads/master' && (steps.plan.outcome == 'success' || steps.plan.outcome == 'failure')
-        uses: robburger/terraform-pr-commenter@v1
+        uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: plan
           commenter_input: ${{ format('{0}{1}', steps.plan.outputs.stdout, steps.plan.outputs.stderr) }}
