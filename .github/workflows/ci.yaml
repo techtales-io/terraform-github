@@ -39,6 +39,7 @@ jobs:
         with:
           workload_identity_provider: '***REMOVED***'
           service_account: '***REMOVED***'
+          token_format: 'access_token'
 
       # https://github.com/mdgreenwald/mozilla-sops-action
       - name: Setup SOPS
