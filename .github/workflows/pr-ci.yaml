@@ -63,14 +63,14 @@ jobs:
       # ADD SECRETS TO ENV
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-      #- name: Add secrets to ENV
-      #  shell: bash
-      #  run: |
-      #    echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-      #    echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
-      #    echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_ID')" >> $GITHUB_ENV
-      #    echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
-      #    echo "GITHUB_APP_PEM_FILE=\"$(sops -d 'secrets.sops.yaml' | ./yq '.GITHUB_APP_PEM_FILE')\"" >> $GITHUB_ENV
+      - name: Add secrets to ENV
+        shell: bash
+        run: |
+          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "GITHUB_APP_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_APP_ID')" >> $GITHUB_ENV
+          echo "GITHUB_APP_INSTALLATION_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_APP_INSTALLATION_ID')" >> $GITHUB_ENV
+          echo "GITHUB_APP_PEM_FILE=\"$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_APP_PEM_FILE')\"" >> $GITHUB_ENV
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRASCAN
