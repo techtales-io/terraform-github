@@ -21,7 +21,9 @@ jobs:
       # repository-projects: read|write|none
       # security-events: read|write|n
       # statuses: read
-    runs-on: ubuntu-latest
+    runs-on:
+      - self-hosted
+      - home-infra
     env:
       working-directory: terraform
       # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
