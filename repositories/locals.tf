@@ -46,21 +46,10 @@ locals {
     }
   ]
 
-  # set autolinks from jirakeys.yaml
-  # add additional keys to yaml file
-  jirakeys = fileexists("${path.module}/jirakeys.yaml") ? yamldecode(file("${path.module}/jirakeys.yaml")).keys : []
-  autolink_references = [
-    for key in local.jirakeys : {
-      key_prefix          = "${key}-",
-      target_url_template = "***REMOVED***browse/${key}-<num>",
-    }
-  ]
-
   # default settings
   defaults = {
-    private             = local.private
-    public              = local.public
-    autolink_references = local.autolink_references
-    branch_protection   = local.branch_protection
+    private = local.private
+    public  = local.public
+    #branch_protection   = local.branch_protection
   }
 }

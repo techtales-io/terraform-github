@@ -12,7 +12,6 @@ module "test" {
   homepage_url = ""
   extra_topics = [
     "test",
-    "test2",
   ]
 
   defaults             = var.defaults.private
@@ -37,7 +36,4 @@ module "test" {
   #   [for user in var.collaborators["group_name"] : user],
   #   ["some_github_user"],
   # ))
-
-  # autolink (jira reference links)
-  autolink_references = var.defaults.autolink_references
 }

@@ -6,7 +6,7 @@ module "team_techtales" {
   description = ""
   privacy     = "secret"
 
-  members = [
+  maintainers = [
     var.users["***REMOVED***"],
     var.users["***REMOVED***"],
   ]

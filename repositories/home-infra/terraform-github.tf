@@ -36,7 +36,4 @@ module "terraform_github" {
   #   [for user in var.collaborators["group_name"] : user],
   #   ["some_github_user"],
   # ))
-
-  # autolink (jira reference links)
-  autolink_references = var.defaults.autolink_references
 }

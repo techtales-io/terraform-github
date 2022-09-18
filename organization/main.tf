@@ -11,5 +11,6 @@ module "organization" {
   admins = [
     var.users["***REMOVED***"],
     var.users["***REMOVED***"],
+    var.users["***REMOVED***"],
   ]
 }

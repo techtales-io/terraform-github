@@ -3,7 +3,7 @@ terraform {
   required_providers {
     github = {
       source  = "integrations/github"
-      version = "4.28.0"
+      version = "4.31.0"
     }
   }
   backend "s3" {
@@ -20,6 +20,7 @@ terraform {
 
 locals {
   users = {
+    "***REMOVED***" = "techtales-automation"
     "***REMOVED***" = "jazzlyn"
     "***REMOVED***"   = "tyriis"
   }
