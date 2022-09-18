@@ -3,7 +3,7 @@
 extends: default
 rules:
   truthy:
-    allowed-values: ['true', 'false', 'on', 'yes']
+    allowed-values: ["true", "false", "on", "yes"]
 
   line-length:
     max: 120
@@ -24,7 +24,7 @@ rules:
 
   document-start:
     present: true
-    level: warning
+    level: error
 
   comments:
     min-spaces-from-content: 1
