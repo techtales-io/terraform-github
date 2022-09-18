@@ -66,9 +66,9 @@ jobs:
       - name: Add secrets to ENV
         shell: bash
         run: |
-          echo "AWS_ACCESS_KEY_ID=::add-mask::$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "AWS_SECRET_ACCESS_KEY=::add-mask::$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
-          echo "GITHUB_TOKEN=::add-mask::$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_TOKEN')" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_TOKEN')" >> $GITHUB_ENV
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRASCAN
