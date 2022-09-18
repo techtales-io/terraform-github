@@ -66,9 +66,9 @@ jobs:
       - name: Add secrets to ENV
         shell: bash
         run: |
-          echo "::add-mask::AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "::add-mask::AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
-          echo "::add-mask::GITHUB_TOKEN=$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_TOKEN')" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY_ID=::add-mask::$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=::add-mask::$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "GITHUB_TOKEN=::add-mask::$(sops -d 'secrets.sops.yaml' | ./yq '.data.GITHUB_TOKEN')" >> $GITHUB_ENV
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRASCAN
@@ -142,7 +142,7 @@ jobs:
 
       # https://github.com/marketplace/actions/terraform-pr-commenter
       - name: Post validate outcome
-        if: always() && github.ref != 'refs/heads/master' && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure')
+        if: always() && github.ref != 'refs/heads/main' && (steps.validate.outcome == 'success' || steps.validate.outcome == 'failure')
         uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: validate
@@ -159,9 +159,14 @@ jobs:
         id: plan
         run: terraform plan -out workspace.plan
 
+      - name: test
+        shell: bash
+        run: |
+          echo "${{steps.plan.outcome}}"
+
       # https://github.com/marketplace/actions/terraform-pr-commenter
       - name: Post plan outcome
-        if: always() && github.ref != 'refs/heads/master' && (steps.plan.outcome == 'success' || steps.plan.outcome == 'failure')
+        if: always() && github.ref != 'refs/heads/main' && (steps.plan.outcome == 'success' || steps.plan.outcome == 'failure')
         uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: plan
