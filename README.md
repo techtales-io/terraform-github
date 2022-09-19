@@ -27,7 +27,9 @@ No resources.
 
 ## Inputs
 
-No inputs.
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_github_token"></a> [github\_token](#input\_github\_token) | github token from automation user | `string` | n/a | yes |
 
 ## Outputs
 
