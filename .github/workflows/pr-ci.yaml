@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-      pull-requests: read
+      pull-requests: write
 
     # set runner for job to run on
     runs-on:
