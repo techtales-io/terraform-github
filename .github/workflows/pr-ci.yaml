@@ -166,7 +166,7 @@ jobs:
 
       # https://github.com/marketplace/actions/terraform-pr-commenter
       - name: Post plan outcome
-        # if: always() && github.ref != 'refs/heads/main' && (steps.plan.outcome == 'success' || steps.plan.outcome == 'failure')
+        if: always() && github.ref != 'refs/heads/main' && (steps.plan.outcome == 'success' || steps.plan.outcome == 'failure')
         uses: robburger/terraform-pr-commenter@v1.5.0
         with:
           commenter_type: plan
