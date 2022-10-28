@@ -1,0 +1,33 @@
+---
+version: "3"
+
+tasks:
+  init:
+    desc: Terraform init
+    cmds:
+      - "terraform init"
+
+  plan:
+    desc: Terraform plan
+    cmds:
+      - "terraform plan"
+
+  apply:
+    desc: Terraform apply
+    cmds:
+      - "terraform apply"
+
+  refresh:
+    desc: Terraform refresh-only
+    cmds:
+      - "terraform apply -refresh-only"
+
+  update:
+    desc: Terraform update
+    cmds:
+      - "terraform get -update"
+
+  upgrade:
+    desc: Terraform upgrade
+    cmds:
+      - "terraform init -upgrade"
