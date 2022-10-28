@@ -21,3 +21,15 @@ module "playground" {
   collaborators = var.collaborators
   defaults      = local.defaults
 }
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# MODULE website
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+module "website" {
+  source        = "./website/"
+  teams         = var.teams
+  users         = var.users
+  collaborators = var.collaborators
+  defaults      = local.defaults
+}
