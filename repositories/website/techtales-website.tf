@@ -10,6 +10,15 @@ module "techtales_website" {
   name         = "techtales-website"
   description  = ""
   homepage_url = ""
+
+  # select template repo
+  # https://github.com/jazzlyn/repo-template-basic
+  # https://github.com/jazzlyn/repo-template-terraform
+  template = {
+    owner      = "jazzlyn"
+    repository = "repo-template-basic"
+  }
+
   extra_topics = [
     "techtales",
     "website",
