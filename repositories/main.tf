@@ -26,8 +26,8 @@ module "playground" {
 # MODULE website
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-module "website" {
-  source        = "./website/"
+module "websites" {
+  source        = "./websites/"
   teams         = var.teams
   users         = var.users
   collaborators = var.collaborators

@@ -1,14 +1,14 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# TECHTALES WEBSITE
+# CONFIGURE REPO
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #tfsec:ignore:github-repositories-enable_vulnerability_alerts
-module "techtales_website" {
+module "mkdocs_blog" {
   source  = "mineiros-io/repository/github"
   version = "0.16.2"
 
-  name         = "techtales-website"
-  description  = ""
+  name         = "mkdocs-blog"
+  description  = "source repo for website"
   homepage_url = ""
 
   # select template repo
