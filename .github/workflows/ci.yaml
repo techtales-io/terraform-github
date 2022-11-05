@@ -36,7 +36,7 @@ jobs:
       # https://github.com/marketplace/actions/authenticate-to-google-cloud
       - name: Authenticate to Google Cloud
         id: "auth"
-        uses: "google-github-actions/auth@v0.4.0"
+        uses: "google-github-actions/auth@v0.8.3"
         with:
           workload_identity_provider: "***REMOVED***"
           service_account: "***REMOVED***"
@@ -55,7 +55,7 @@ jobs:
 
       # https://github.com/marketplace/actions/setup-node-js-environment
       - name: Setup Node.js
-        uses: actions/setup-node@v3.4.1
+        uses: actions/setup-node@v3.5.1
         with:
           node-version: 16
 
@@ -87,9 +87,7 @@ jobs:
 
       # https://github.com/marketplace/actions/hashicorp-setup-terraform
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2.0.0
-        with:
-          terraform_version: 1.2.3
+        uses: hashicorp/setup-terraform@v2.0.3
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRAFORM FMT AND POST OUTCOME
