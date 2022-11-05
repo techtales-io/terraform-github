@@ -158,11 +158,6 @@ jobs:
         id: plan
         run: terraform plan -out workspace.plan
 
-      - name: test
-        shell: bash
-        run: |
-          echo "${{steps.plan.outcome}}"
-
       # https://github.com/marketplace/actions/terraform-pr-commenter
       - name: Post plan outcome
         if: always() && github.ref != 'refs/heads/main' && (steps.plan.outcome == 'success' || steps.plan.outcome == 'failure')
