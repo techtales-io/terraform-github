@@ -22,8 +22,6 @@ module "mkdocs_blog" {
   extra_topics = [
     "techtales",
     "website",
-    "jamstack",
-    "react",
   ]
 
   defaults             = var.defaults.private
