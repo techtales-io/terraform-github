@@ -43,31 +43,39 @@ Github Infrastructure as code with Terraform and Mineiros Modules
 
 ```console
 .
-├── main.tf
-├── organization
-│   ├── main.tf
-│   └── variables.tf
-├── providers.tf
-├── README.md                         # this document
-├── repositories
+├── .github
+│   └── workflows
+│       └── ci.yaml               # github ci configuration
+├── organization                  # organisation and member config
+├── repositories                  # repository configuration
 │   ├── home-infra
-│   │   ├── terraform-github.tf
-│   │   └── variables.tf
+│   ├── playground
+│   ├── websites
 │   ├── locals.tf
 │   ├── main.tf
-│   ├── playground
-│   │   ├── test.tf
-│   │   └── variables.tf
-│   ├── variables.tf
-│   └── website
-│       ├── techtales-website.tf
-│       └── variables.tf
-├── secrets.sops.yaml
-├── teams
-│   ├── outputs.tf
-│   ├── team_techtales.tf
 │   └── variables.tf
-└── variables.tf
+├── .taskfiles
+│   ├── pre-commit.yaml
+│   └── terraform.yaml
+├── teams                         # team configuration
+├── .editorconfig
+├── .envrc
+├── .gitignore
+├── main.tf                       # locals and module configuration
+├── .markdownlint.yaml
+├── .pre-commit-config.yaml
+├── .prettierignore
+├── .prettierrc.yaml
+├── providers.tf                  # provider configuration
+├── README.md                     # this document
+├── secrets.sops.yaml             # secrets for the github ci
+├── .sops.yaml
+├── Taskfile.yaml
+├── .terraform-docs.yaml
+├── .terraform.lock.hcl
+├── .tflint.hcl
+├── variables.tf
+└── .yamllint.config.yaml
 ```
 
 ## Code-Style
