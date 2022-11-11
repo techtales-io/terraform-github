@@ -143,10 +143,13 @@ terraform init
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | 4.31.0 |
+| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 0.7.1 |
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_sops"></a> [sops](#provider\_sops) | 0.7.1 |
 
 ## Modules
 
@@ -158,12 +161,15 @@ No providers.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [sops_file.users](https://registry.terraform.io/providers/carlpett/sops/0.7.1/docs/data-sources/file) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_github_owner"></a> [github\_owner](#input\_github\_owner) | github owner / organization | `string` | n/a | yes |
 | <a name="input_github_token"></a> [github\_token](#input\_github\_token) | github token from automation user | `string` | n/a | yes |
 
 ## Outputs
