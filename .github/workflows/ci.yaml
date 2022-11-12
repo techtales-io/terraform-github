@@ -53,11 +53,12 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
           tar xz && mv yq_linux_amd64 yq
 
+      # for terraform fmt
       # https://github.com/marketplace/actions/setup-node-js-environment
       - name: Setup Node.js
         uses: actions/setup-node@v3.5.1
         with:
-          node-version: 16
+          node-version: 18
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # ADD SECRETS TO ENV
@@ -67,9 +68,12 @@ jobs:
       - name: Add secrets to ENV
         shell: bash
         run: |
-          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.data.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
-          echo "TF_VAR_github_token=$(sops -d 'secrets.sops.yaml' | ./yq '.data.TF_VAR_github_token')" >> $GITHUB_ENV
+          echo "AWS_S3_ENDPOINT=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_S3_ENDPOINT')" >> $GITHUB_ENV
+          echo "AWS_REGION=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_REGION')" >> $GITHUB_ENV
+          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
+          echo "TF_VAR_github_owner=$(sops -d 'secrets.sops.yaml' | ./yq '.TF_VAR_github_owner')" >> $GITHUB_ENV
+          echo "TF_VAR_github_token=$(sops -d 'secrets.sops.yaml' | ./yq '.TF_VAR_github_token')" >> $GITHUB_ENV
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRASCAN

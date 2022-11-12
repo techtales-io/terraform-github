@@ -2,7 +2,9 @@
 # CONFIGURE PROVIDERS
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+provider "sops" {}
+
 provider "github" {
-  owner = "techtales-io"
+  owner = var.github_owner
   token = var.github_token
 }
