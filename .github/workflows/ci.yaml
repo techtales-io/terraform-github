@@ -53,11 +53,12 @@ jobs:
           wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
           tar xz && mv yq_linux_amd64 yq
 
-      # # https://github.com/marketplace/actions/setup-node-js-environment
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v3.5.1
-      #   with:
-      #     node-version: 16
+      # for terraform fmt
+      # https://github.com/marketplace/actions/setup-node-js-environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 18
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # ADD SECRETS TO ENV
