@@ -72,6 +72,7 @@ jobs:
       - name: Add secrets to ENV
         shell: bash
         run: |
+          sops --decrypt secrets.sops.yaml > secrets.yaml
           AWS_S3_ENDPOINT=$(sed -n 's/^AWS_S3_ENDPOINT=//p' secrets.yaml)
           echo "::add-mask::$AWS_S3_ENDPOINT"
           echo AWS_S3_ENDPOINT=$AWS_S3_ENDPOINT >> $GITHUB_ENV
