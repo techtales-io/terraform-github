@@ -35,23 +35,25 @@ jobs:
 
       # https://github.com/marketplace/actions/authenticate-to-google-cloud
       - name: Authenticate to Google Cloud
-        id: "auth"
-        uses: "google-github-actions/auth@v0.8.3"
+        id: auth
+        uses: "google-github-actions/auth@v1.0.0"
         with:
-          workload_identity_provider: "***REMOVED***"
-          service_account: "***REMOVED***"
+          workload_identity_provider: "${{ secrets.GH_WORKLOAD_IDENTITY_PATH }}"
+          service_account: "${{ secrets.GH_ACTION_KMS_SA }}"
+          export_environment_variables: false
+
+      - name: Add Google credentials to env
+        id: auth-cred
+        shell: bash
+        run: |
+          echo GOOGLE_APPLICATION_CREDENTIALS="${{ steps.auth.outputs.credentials_file_path }}" >> $GITHUB_ENV
 
       # https://github.com/marketplace/actions/sops-binary-installer
       - name: Setup SOPS
         id: install
-        uses: mdgreenwald/mozilla-sops-action@v1.2.0
+        uses: mdgreenwald/mozilla-sops-action@v1.3.0
         with:
           version: latest
-
-      - name: Setup YQ
-        run: |
-          wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
-          tar xz && mv yq_linux_amd64 yq
 
       # for terraform fmt
       # https://github.com/marketplace/actions/setup-node-js-environment
@@ -65,15 +67,31 @@ jobs:
       # note: TF_VAR_github_token is set here for github provider auth to not conflict with CI token stored in GITHUB_TOKEN
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+      - name: Decrypt secrets
+        shell: bash
+        run: sops --decrypt secrets.sops.yaml > secrets.yaml
+
       - name: Add secrets to ENV
         shell: bash
         run: |
-          echo "AWS_S3_ENDPOINT=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_S3_ENDPOINT')" >> $GITHUB_ENV
-          echo "AWS_REGION=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_REGION')" >> $GITHUB_ENV
-          echo "AWS_ACCESS_KEY_ID=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_ACCESS_KEY_ID')" >> $GITHUB_ENV
-          echo "AWS_SECRET_ACCESS_KEY=$(sops -d 'secrets.sops.yaml' | ./yq '.AWS_SECRET_ACCESS_KEY')" >> $GITHUB_ENV
-          echo "TF_VAR_github_owner=$(sops -d 'secrets.sops.yaml' | ./yq '.TF_VAR_github_owner')" >> $GITHUB_ENV
-          echo "TF_VAR_github_token=$(sops -d 'secrets.sops.yaml' | ./yq '.TF_VAR_github_token')" >> $GITHUB_ENV
+          AWS_S3_ENDPOINT=$(sed -n 's/^AWS_S3_ENDPOINT: //p' secrets.yaml)
+          echo "::add-mask::$AWS_S3_ENDPOINT"
+          echo AWS_S3_ENDPOINT=$AWS_S3_ENDPOINT >> $GITHUB_ENV
+          AWS_REGION=$(sed -n 's/^AWS_REGION: //p' secrets.yaml)
+          echo "::add-mask::$AWS_REGION"
+          echo AWS_REGION=$AWS_REGION >> $GITHUB_ENV
+          AWS_ACCESS_KEY_ID=$(sed -n 's/^AWS_ACCESS_KEY_ID: //p' secrets.yaml)
+          echo "::add-mask::$AWS_ACCESS_KEY_ID"
+          echo AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID >> $GITHUB_ENV
+          AWS_SECRET_ACCESS_KEY=$(sed -n 's/^AWS_SECRET_ACCESS_KEY: //p' secrets.yaml)
+          echo "::add-mask::$AWS_SECRET_ACCESS_KEY"
+          echo AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY >> $GITHUB_ENV
+          TF_VAR_github_owner=$(sed -n 's/^TF_VAR_github_owner: //p' secrets.yaml)
+          echo "::add-mask::$TF_VAR_github_owner"
+          echo TF_VAR_github_owner=$TF_VAR_github_owner >> $GITHUB_ENV
+          TF_VAR_github_token=$(sed -n 's/^TF_VAR_github_token: //p' secrets.yaml)
+          echo "::add-mask::$TF_VAR_github_token"
+          echo TF_VAR_github_token=$TF_VAR_github_token >> $GITHUB_ENV
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRASCAN
