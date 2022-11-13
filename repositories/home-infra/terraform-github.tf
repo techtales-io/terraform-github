@@ -28,15 +28,7 @@ module "terraform_github" {
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
-  vulnerability_alerts = false # enable if wanted / check costs!
-
-  # teams
-  # pull_teams = []
-  # triage_teams = []
-  push_teams = [
-    var.teams.team_techtales.name,
-  ]
-  # maintain_teams = []
+  vulnerability_alerts = false
 
   # individual collaborators
   # pull_collaborators = []

@@ -6,11 +6,11 @@ module "organization" {
   source  = "mineiros-io/organization/github"
   version = "0.7.0"
 
-  members = []
+  members = [
+    for members in var.members.members : members
+  ]
 
   admins = [
-    var.users["***REMOVED***"],
-    var.users["***REMOVED***"],
-    var.users["***REMOVED***"],
+    for admins in var.members.admins : admins
   ]
 }
