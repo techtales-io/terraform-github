@@ -40,18 +40,8 @@ jobs:
         with:
           workload_identity_provider: "***REMOVED***"
           service_account: "***REMOVED***"
-
-      - name: Mask Google envs
-        shell: bash
-        run: |
-          echo "::add-mask::$CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE"
-          echo "::add-mask::$GOOGLE_APPLICATION_CREDENTIALS"
-          echo "::add-mask::$GOOGLE_GHA_CREDS_PATH"
-          echo "::add-mask::$CLOUDSDK_CORE_PROJECT"
-          echo "::add-mask::$CLOUDSDK_PROJECT"
-          echo "::add-mask::$GCLOUD_PROJECT"
-          echo "::add-mask::$GCP_PROJECT"
-          echo "::add-mask::$GOOGLE_CLOUD_PROJECT"
+          export_environment_variables: false
+          create_credentials_file: true
 
       # https://github.com/marketplace/actions/sops-binary-installer
       - name: Setup SOPS
