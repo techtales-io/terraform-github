@@ -36,22 +36,29 @@ jobs:
       # https://github.com/marketplace/actions/authenticate-to-google-cloud
       - name: Authenticate to Google Cloud
         id: "auth"
-        uses: "google-github-actions/auth@v0.8.3"
+        uses: "google-github-actions/auth@v1.0.0"
         with:
           workload_identity_provider: "***REMOVED***"
           service_account: "***REMOVED***"
 
+      - name: Mask Google envs
+        shell: bash
+        run: |
+          echo "::add-mask::$CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE"
+          echo "::add-mask::$GOOGLE_APPLICATION_CREDENTIALS"
+          echo "::add-mask::$GOOGLE_GHA_CREDS_PATH"
+          echo "::add-mask::$CLOUDSDK_CORE_PROJECT"
+          echo "::add-mask::$CLOUDSDK_PROJECT"
+          echo "::add-mask::$GCLOUD_PROJECT"
+          echo "::add-mask::$GCP_PROJECT"
+          echo "::add-mask::$GOOGLE_CLOUD_PROJECT"
+
       # https://github.com/marketplace/actions/sops-binary-installer
       - name: Setup SOPS
         id: install
-        uses: mdgreenwald/mozilla-sops-action@v1.2.0
+        uses: mdgreenwald/mozilla-sops-action@v1.3.0
         with:
           version: latest
-
-      # - name: Setup YQ
-      #   run: |
-      #     wget https://github.com/mikefarah/yq/releases/download/v4.27.5/yq_linux_amd64.tar.gz -O - | \
-      #     tar xz && mv yq_linux_amd64 yq
 
       # for terraform fmt
       # https://github.com/marketplace/actions/setup-node-js-environment
