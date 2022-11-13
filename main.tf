@@ -11,10 +11,8 @@ terraform {
     }
   }
   backend "s3" {
-    #endpoint                    = "***REMOVED***"
-    bucket = "terraform"
-    key    = "techtales/github/terraform.tfstate"
-    #region                      = "home"
+    bucket                      = "terraform"
+    key                         = "techtales/github/terraform.tfstate"
     skip_credentials_validation = true
     skip_metadata_api_check     = true
     skip_region_validation      = true
@@ -27,30 +25,17 @@ data "sops_file" "users" {
 }
 
 locals {
-  all_users     = nonsensitive(yamldecode(data.sops_file.users.raw).users)
-  users         = { for users in local.all_users : users.email => users.username }
-  collaborators = {}
+  all_users     = nonsensitive(yamldecode(data.sops_file.users.raw))
+  members       = local.all_users.members
+  collaborators = local.all_users.collaborators
 }
 
 module "organization" {
-  source = "./organization"
-  users  = local.users
-}
-
-module "teams" {
-  source = "./teams"
-  depends_on = [
-    module.organization
-  ]
-  users = local.users
+  source  = "./organization"
+  members = local.members
 }
 
 module "repositories" {
-  source = "./repositories"
-  depends_on = [
-    module.teams
-  ]
-  teams         = module.teams
-  users         = local.users
+  source        = "./repositories"
   collaborators = local.collaborators
 }

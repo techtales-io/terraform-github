@@ -31,14 +31,6 @@ module "website" {
   archive_on_destroy   = true
   vulnerability_alerts = true
 
-  # teams
-  # pull_teams = []
-  # triage_teams = []
-  push_teams = [
-    var.teams.team_techtales.name,
-  ]
-  # maintain_teams = []
-
   # individual collaborators
   # pull_collaborators = []
   # triage_collaborators = []

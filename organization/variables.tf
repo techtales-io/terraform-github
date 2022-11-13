@@ -2,7 +2,7 @@
 # CONFIGURE VARIABLES
 # --------------------------------------------------------------------------------
 
-variable "users" {
-  description = "All users from Organisation"
-  type        = any
+variable "members" {
+  description = "all members of the organisation"
+  type        = map(list(string))
 }

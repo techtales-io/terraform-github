@@ -1,12 +1,12 @@
 # yamllint disable
 kind: Secret
-users:
-    - username: ENC[AES256_GCM,data:lup9bu0nQsSos/h2ItcF3WZC0cI=,iv:s6LoC/DHAVUst7olE5KVgKPGuST9hOZ1xbFaLBxKNSs=,tag:4MpvdQ1w7ILpzX5r30Ozpg==,type:str]
-      email: ENC[AES256_GCM,data:ofcMT/4dqYrb420oXfGqBtVx5Q==,iv:JSGlEgNh8MO73M4QPLd6/kyYFaZDY8QNUFjKLEPE7K0=,tag:y2RVpRxlPj7IbFTxQ5fORw==,type:str]
-    - username: ENC[AES256_GCM,data:9MO4JGRTwg==,iv:Z2UBS6jXWCT8LsOgtw8FfVTSEMjg9a777Oo21k5PgH8=,tag:oeJXHr/DVlOfqjtCMDxJyg==,type:str]
-      email: ENC[AES256_GCM,data:K88RfIueeBdAvi7PHe6ncFDxTQ==,iv:cYF9TUrGdtY5JXVVCo2pKDgDwzc3QvkbGtBgZF7jVdM=,tag:bF7qy2utKOG4SzXYDrm/fQ==,type:str]
-    - username: ENC[AES256_GCM,data:q16SF8LO,iv:6aAjCUONAGyCyEBi1q3Ym6SQvcg21pg2ukh+00lffG4=,tag:FIIFxMTNEhhXPpQNyN4ZMw==,type:str]
-      email: ENC[AES256_GCM,data:1fej++tCPrtD84N1N8TpFlw=,iv:5mcajuedcpkZsmGz3tUo7FJm2inkeQdq6lflqztJqZ8=,tag:IP023sB5tj5zBHwk8uVWYA==,type:str]
+members:
+    admins:
+        - ENC[AES256_GCM,data:XfXWlB7X8Qiza9HPG+BEHHOhCdg=,iv:iIT+cnXOnbhFRYCHrlrQKN+VFsmrR+dQcr/+UhWRFr4=,tag:psCeua5hSvXsztoHdEO4rw==,type:str]
+        - ENC[AES256_GCM,data:hTzEs0lERQ==,iv:zmoKGwzc8mxxTExyrQ3VARKPMijQh033K0F3HWTy8f8=,tag:A0wURWCnDCeVt94e2a3dxA==,type:str]
+        - ENC[AES256_GCM,data:/z/bnRYi,iv:9IVCMaYtAb4YbIyBf6QneROh7UH88YoQhQ2nxFcRAis=,tag:rHIPHEwAi1X4X8muogt+nw==,type:str]
+    members: []
+collaborators: []
 sops:
     kms: []
     gcp_kms:
@@ -16,8 +16,8 @@ sops:
     azure_kv: []
     hc_vault: []
     age: []
-    lastmodified: "2022-11-11T23:10:39Z"
-    mac: ENC[AES256_GCM,data:HfriopBMejqFpofucgYTxsB27aeW3OISlUB95aMGHvw5djas0eyPGga9XjU65Ux5JUCbR+zkYYn4ImmKa5hxajPisDHo0AAc/FQNsi6kcWUwSXNP1aJAsVRGT3keLKOzVnQfr/rNn+o1ouVuT1f/+BSRCoM+huHWgYchEHt9V0s=,iv:P1VBpSVyAY70wwZwpC9SNbtpzhHrKU4bpdCBpwXuPjY=,tag:Efsuh4sJxDhvQjNj05VM8g==,type:str]
+    lastmodified: "2022-11-13T21:04:20Z"
+    mac: ENC[AES256_GCM,data:ZcCUMCbe/lB9gYk5NcmDbpGqI0lcpgRhOB4PqTYWA7mLcYzlo4s6ooqLIIyAJ104Ibjv+ggZnYPqlZttKAIFkD12GS2mMfYPmAWzU290nd8rJNyJKSUhchR4Nl+Pe6FRm+YHBA95pocNnxrIYuxmBfynUtbpQ9wjK/WAxhFQUp4=,iv:8VdFUh3L+1sC0jQVip+PdgHWLZOLwjO+i+a6d8pYMwA=,tag:gL9rEoGWv/E6rx+q0rZz2g==,type:str]
     pgp: []
     unencrypted_regex: ^(kind)$
     version: 3.7.3

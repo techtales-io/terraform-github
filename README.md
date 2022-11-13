@@ -157,7 +157,6 @@ terraform init
 |------|--------|---------|
 | <a name="module_organization"></a> [organization](#module\_organization) | ./organization | n/a |
 | <a name="module_repositories"></a> [repositories](#module\_repositories) | ./repositories | n/a |
-| <a name="module_teams"></a> [teams](#module\_teams) | ./teams | n/a |
 
 ## Resources
 
