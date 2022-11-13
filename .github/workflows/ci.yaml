@@ -35,13 +35,19 @@ jobs:
 
       # https://github.com/marketplace/actions/authenticate-to-google-cloud
       - name: Authenticate to Google Cloud
-        id: "auth"
+        id: auth
         uses: "google-github-actions/auth@v1.0.0"
         with:
           workload_identity_provider: "***REMOVED***"
           service_account: "***REMOVED***"
           export_environment_variables: false
           create_credentials_file: true
+
+      - name: Add Google credentials to env
+        id: auth-cred
+        shell: bash
+        run: |
+          echo GOOGLE_APPLICATION_CREDENTIALS="${{ steps.auth.outputs.credentials_file_path }}" >> $GITHUB_ENV
 
       # https://github.com/marketplace/actions/sops-binary-installer
       - name: Setup SOPS
