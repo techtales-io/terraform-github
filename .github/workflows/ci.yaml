@@ -65,9 +65,9 @@ jobs:
       # note: TF_VAR_github_token is set here for github provider auth to not conflict with CI token stored in GITHUB_TOKEN
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-      - name: Decrypt secrets
-        shell: bash
-        run: sops --decrypt secrets.sops.yaml > secrets.yaml
+      # - name: Decrypt secrets
+      #   shell: bash
+      #   run: sops --decrypt secrets.sops.yaml > secrets.yaml
 
       - name: Add secrets to ENV
         shell: bash
