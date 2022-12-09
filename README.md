@@ -141,7 +141,7 @@ terraform init
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, <= 1.3.6 |
 | <a name="requirement_github"></a> [github](#requirement\_github) | 4.31.0 |
 | <a name="requirement_sops"></a> [sops](#requirement\_sops) | 0.7.1 |
 

@@ -37,7 +37,8 @@ locals {
 
   branch_protection = [
     {
-      branch = "main"
+      branch                 = "main"
+      require_signed_commits = true
       required_pull_request_reviews = {
         dismiss_stale_reviews           = true
         required_approving_review_count = 1

@@ -8,7 +8,7 @@ module "terraform_github" {
   version = "0.16.2"
 
   name         = "terraform-github"
-  description  = ""
+  description  = "IaC for Github resources with Terraform"
   homepage_url = ""
 
   # select template repo
@@ -28,7 +28,7 @@ module "terraform_github" {
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
-  vulnerability_alerts = false
+  vulnerability_alerts = true
 
   # individual collaborators
   # pull_collaborators = []
