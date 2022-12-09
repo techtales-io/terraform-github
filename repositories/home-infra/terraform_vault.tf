@@ -8,7 +8,7 @@ module "terraform_vault" {
   version = "0.16.2"
 
   name         = "terraform-vault"
-  description  = ""
+  description  = "IaC for Hashicorp Vault resources with Terraform"
   homepage_url = ""
 
   # select template repo
@@ -29,7 +29,7 @@ module "terraform_vault" {
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
-  vulnerability_alerts = false
+  vulnerability_alerts = true
 
   # individual collaborators
   # pull_collaborators = []
