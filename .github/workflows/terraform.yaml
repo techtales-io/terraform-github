@@ -33,6 +33,28 @@ jobs:
       # SETUP STUFF
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+      # https://github.com/marketplace/actions/sops-binary-installer
+      - name: Setup SOPS
+        uses: mdgreenwald/mozilla-sops-action@v1.3.0
+        with:
+          version: latest
+
+      # for terraform fmt
+      # https://github.com/marketplace/actions/setup-node-js-environment
+      - name: Setup Node.js
+        uses: actions/setup-node@v3.5.1
+        with:
+          node-version: 18
+
+      # https://github.com/marketplace/actions/hashicorp-setup-terraform
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      # AUTHENTICATE KMS SA AND ADD SECRETS TO ENV
+      # note: TF_VAR_github_token is set here for github provider auth to not conflict with CI token stored in GITHUB_TOKEN
+      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
       # https://github.com/marketplace/actions/authenticate-to-google-cloud
       - name: Authenticate to Google Cloud
         id: auth
@@ -47,25 +69,6 @@ jobs:
         shell: bash
         run: |
           echo GOOGLE_APPLICATION_CREDENTIALS="${{ steps.auth.outputs.credentials_file_path }}" >> $GITHUB_ENV
-
-      # https://github.com/marketplace/actions/sops-binary-installer
-      - name: Setup SOPS
-        id: install
-        uses: mdgreenwald/mozilla-sops-action@v1.3.0
-        with:
-          version: latest
-
-      # for terraform fmt
-      # https://github.com/marketplace/actions/setup-node-js-environment
-      - name: Setup Node.js
-        uses: actions/setup-node@v3.5.1
-        with:
-          node-version: 18
-
-      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-      # ADD SECRETS TO ENV
-      # note: TF_VAR_github_token is set here for github provider auth to not conflict with CI token stored in GITHUB_TOKEN
-      # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
       - name: Decrypt secrets
         shell: bash
@@ -99,17 +102,12 @@ jobs:
 
       # https://github.com/marketplace/actions/terrascan-iac-scanner
       - name: Run Terrascan
-        id: terrascan
         uses: tenable/terrascan-action@v1.4.1
         with:
           iac_type: "terraform"
           iac_version: "v14"
           policy_type: "github"
           only_warn: true
-
-      # https://github.com/marketplace/actions/hashicorp-setup-terraform
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2.0.3
 
       # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       # PERFORM TERRAFORM FMT AND POST OUTCOME
