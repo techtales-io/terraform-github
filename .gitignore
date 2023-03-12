@@ -1,5 +1,6 @@
 # Editors
 .vscode/
+.idea/
 
 # OS artifacts
 .DS_Store
@@ -7,6 +8,10 @@ Thumbs.db
 
 # vscode-sops
 .decrypted~*.yaml
+
+# Env files
+*.envrc
+*.env
 
 # Local .terraform directories
 **/.terraform/*
@@ -42,8 +47,4 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-**/**/.terraform.lock.hcl
-
-# Env files
-*.envrc
-*.env
+**/.terraform.lock.hcl
