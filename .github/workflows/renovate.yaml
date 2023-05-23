@@ -28,7 +28,7 @@ jobs:
   renovate:
     uses: strg-at/github-workflows/.github/workflows/run-renovate.yaml@feature/MM-86-setup-renovate-workflow
     with:
-      runner: home-infra
+      runner: '["home-infra"]'
       configuration-file: ".github/renovate.json5"
       dry-run: ${{ inputs.dry-run || 'false' }}
       log-level: ${{ inputs.log-level || 'debug' }}
