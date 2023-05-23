@@ -1,0 +1,37 @@
+---
+name: renovate
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "dry-run"
+        required: false
+        type: string
+        default: "false"
+      log-level:
+        description: "log-level"
+        required: false
+        type: string
+        default: "debug"
+  schedule:
+    - cron: "0 * * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/renovate.json5"
+      - ".github/renovate/**.json5"
+      - ".github/workflows/renovate.yaml"
+
+jobs:
+  renovate:
+    uses: strg-at/github-workflows/.github/workflows/run-renovate.yaml@feature/MM-86-setup-renovate-workflow
+    with:
+      runner: home-infra
+      configuration-file: ".github/renovate.json5"
+      dry-run: ${{ inputs.dry-run || 'false' }}
+      log-level: ${{ inputs.log-level || 'debug' }}
+    secrets:
+      github-app-id: ${{ secrets.TECHTALES_BOT_GITHUB_APP_ID }}
+      github-app-key: ${{ secrets.TECHTALES_BOT_GITHUB_PEM }}
