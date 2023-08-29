@@ -1,14 +1,14 @@
 # --------------------------------------------------------------------------------
-# TERRAFORM VAULT
+# TERRAFORM GITHUB
 # --------------------------------------------------------------------------------
 
 #tfsec:ignore:github-repositories-enable_vulnerability_alerts
-module "terraform_vault" {
+module "terraform_github" {
   source  = "mineiros-io/repository/github"
   version = "0.16.2"
 
-  name         = "terraform-vault"
-  description  = "IaC for Hashicorp Vault resources with Terraform"
+  name         = "terraform-github"
+  description  = "IaC for Github resources with Terraform"
   homepage_url = ""
 
   # select template repo
@@ -18,13 +18,12 @@ module "terraform_vault" {
     owner      = "jazzlyn"
     repository = "repo-template-terraform"
   }
-  auto_init = false
 
   extra_topics = [
     "terraform",
   ]
 
-  defaults             = var.defaults.private
+  defaults             = local.defaults.private
   visibility           = "private"
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false

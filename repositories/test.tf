@@ -1,14 +1,14 @@
 # --------------------------------------------------------------------------------
-# TERRAFORM GITHUB
+# TEST
 # --------------------------------------------------------------------------------
 
 #tfsec:ignore:github-repositories-enable_vulnerability_alerts
-module "terraform_github" {
+module "test" {
   source  = "mineiros-io/repository/github"
   version = "0.16.2"
 
-  name         = "terraform-github"
-  description  = "IaC for Github resources with Terraform"
+  name         = "test"
+  description  = ""
   homepage_url = ""
 
   # select template repo
@@ -20,15 +20,16 @@ module "terraform_github" {
   }
 
   extra_topics = [
-    "terraform",
+    "test",
+    "test2",
   ]
 
-  defaults             = var.defaults.private
+  defaults             = local.defaults.private
   visibility           = "private"
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
-  vulnerability_alerts = true
+  vulnerability_alerts = false
 
   # individual collaborators
   # pull_collaborators = []

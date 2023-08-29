@@ -1,14 +1,14 @@
 # --------------------------------------------------------------------------------
-# TEST
+# TERRAFORM GCLOUD
 # --------------------------------------------------------------------------------
 
 #tfsec:ignore:github-repositories-enable_vulnerability_alerts
-module "test" {
+module "terraform_gcloud" {
   source  = "mineiros-io/repository/github"
   version = "0.16.2"
 
-  name         = "test"
-  description  = ""
+  name         = "terraform-gcloud"
+  description  = "IaC for Google Cloud resources with Terraform"
   homepage_url = ""
 
   # select template repo
@@ -18,18 +18,18 @@ module "test" {
     owner      = "jazzlyn"
     repository = "repo-template-terraform"
   }
+  auto_init = false
 
   extra_topics = [
-    "test",
-    "test2",
+    "terraform",
   ]
 
-  defaults             = var.defaults.private
+  defaults             = local.defaults.private
   visibility           = "private"
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
-  vulnerability_alerts = false
+  vulnerability_alerts = true
 
   # individual collaborators
   # pull_collaborators = []

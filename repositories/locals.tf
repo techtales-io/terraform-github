@@ -16,6 +16,7 @@ locals {
     allow_auto_merge       = false
     delete_branch_on_merge = true
     has_downloads          = false
+    has_projects           = false
     auto_init              = true
     default_branch         = "main"
     gitignore_template     = ""

@@ -1,14 +1,14 @@
 # --------------------------------------------------------------------------------
-# CONFIGURE REPO
+# TERRAFORM VAULT
 # --------------------------------------------------------------------------------
 
 #tfsec:ignore:github-repositories-enable_vulnerability_alerts
-module "mkdocs_blog" {
+module "terraform_vault" {
   source  = "mineiros-io/repository/github"
   version = "0.16.2"
 
-  name         = "mkdocs-blog"
-  description  = "source repo for website"
+  name         = "terraform-vault"
+  description  = "IaC for Hashicorp Vault resources with Terraform"
   homepage_url = ""
 
   # select template repo
@@ -16,20 +16,20 @@ module "mkdocs_blog" {
   # https://github.com/jazzlyn/repo-template-terraform
   template = {
     owner      = "jazzlyn"
-    repository = "repo-template-basic"
+    repository = "repo-template-terraform"
   }
+  auto_init = false
 
   extra_topics = [
-    "techtales",
-    "website",
+    "terraform",
   ]
 
-  defaults             = var.defaults.private
+  defaults             = local.defaults.private
   visibility           = "private"
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
-  vulnerability_alerts = false
+  vulnerability_alerts = true
 
   # individual collaborators
   # pull_collaborators = []

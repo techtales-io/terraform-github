@@ -1,14 +1,14 @@
 # --------------------------------------------------------------------------------
-# CONFIGURE REPO
+# TERRAFORM GWORKSPACE
 # --------------------------------------------------------------------------------
 
 #tfsec:ignore:github-repositories-enable_vulnerability_alerts
-module "website" {
+module "terraform_gworkspace" {
   source  = "mineiros-io/repository/github"
   version = "0.16.2"
 
-  name         = "website"
-  description  = ""
+  name         = "terraform-gworkspace"
+  description  = "IaC for Google Workspace resources with Terraform"
   homepage_url = ""
 
   # select template repo
@@ -16,16 +16,16 @@ module "website" {
   # https://github.com/jazzlyn/repo-template-terraform
   template = {
     owner      = "jazzlyn"
-    repository = "repo-template-basic"
+    repository = "repo-template-terraform"
   }
+  auto_init = false
 
   extra_topics = [
-    "techtales",
-    "website",
+    "terraform",
   ]
 
-  defaults             = var.defaults.public
-  visibility           = "public"
+  defaults             = local.defaults.private
+  visibility           = "private"
   has_downloads        = false # required to create static build assets on release f.e.
   archived             = false
   archive_on_destroy   = true
