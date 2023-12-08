@@ -16,6 +16,7 @@ resource "github_repository" "repo" {
   #   repository = "repo-template-terraform"
   # }
 
+  #tfsec:ignore:github-repositories-private
   visibility = "public"
 
   topics = [

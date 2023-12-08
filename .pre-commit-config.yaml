@@ -27,9 +27,9 @@ repos:
       - id: terraform_tflint
         args:
           - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
-      # - id: terraform_tfsec
-      #   args:
-      #     - --args=--config-file=__GIT_WORKING_DIR__/.tfsec.yaml
+      - id: terraform_tfsec
+        args:
+          - --args=--config-file=__GIT_WORKING_DIR__/.tfsec.yaml
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
