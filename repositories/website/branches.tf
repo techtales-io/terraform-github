@@ -24,11 +24,11 @@ resource "github_branch_protection" "default" {
   require_conversation_resolution = var.branch_protections[github_branch_default.repo.branch].require_conversation_resolution
   require_signed_commits          = var.branch_protections[github_branch_default.repo.branch].require_signed_commits
 
-  required_pull_request_reviews {
-    dismiss_stale_reviews           = var.branch_protections[github_branch_default.repo.branch].required_pull_request_reviews.dismiss_stale_reviews
-    pull_request_bypassers          = var.branch_protections[github_branch_default.repo.branch].required_pull_request_reviews.pull_request_bypassers
-    required_approving_review_count = var.branch_protections[github_branch_default.repo.branch].required_pull_request_reviews.required_approving_review_count
-  }
+  # required_pull_request_reviews {
+  #   dismiss_stale_reviews           = var.branch_protections[github_branch_default.repo.branch].required_pull_request_reviews.dismiss_stale_reviews
+  #   pull_request_bypassers          = var.branch_protections[github_branch_default.repo.branch].required_pull_request_reviews.pull_request_bypassers
+  #   required_approving_review_count = var.branch_protections[github_branch_default.repo.branch].required_pull_request_reviews.required_approving_review_count
+  # }
 
   required_status_checks {
     strict = var.branch_protections[github_branch_default.repo.branch].required_status_checks.strict

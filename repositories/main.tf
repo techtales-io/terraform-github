@@ -31,9 +31,9 @@ module "terraform_gcloud" {
 }
 
 module "terraform_github" {
-  source   = "./terraform_github"
-  settings = local.settings
-  # branch_protections = local.branch_protections
+  source             = "./terraform_github"
+  settings           = local.settings
+  branch_protections = local.branch_protections
 }
 
 module "terraform_gworkspace" {

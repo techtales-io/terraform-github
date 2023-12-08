@@ -2,9 +2,10 @@
 # CONFIGURE DEFAULTS
 # --------------------------------------------------------------------------------
 
-data "github_app" "techtales-bot" {
-  slug = "techtales-bot"
-}
+# this resource is needed to configure bypassing the branch protection
+# data "github_app" "techtales-bot" {
+#   slug = "techtales-bot"
+# }
 
 locals {
   settings = {
@@ -42,13 +43,13 @@ locals {
       require_conversation_resolution = true
       require_signed_commits          = true
 
-      required_pull_request_reviews = {
-        dismiss_stale_reviews = true
-        pull_request_bypassers = [
-          data.github_app.techtales-bot.node_id
-        ]
-        required_approving_review_count = 1
-      }
+      # required_pull_request_reviews = {
+      #   dismiss_stale_reviews = true
+      #   pull_request_bypassers = [
+      #     data.github_app.techtales-bot.node_id
+      #   ]
+      #   required_approving_review_count = 0
+      # }
 
       required_status_checks = {
         strict = true

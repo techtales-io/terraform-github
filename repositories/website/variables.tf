@@ -35,11 +35,11 @@ variable "branch_protections" {
     enforce_admins                  = bool
     require_conversation_resolution = bool
     require_signed_commits          = bool
-    required_pull_request_reviews = object({
-      dismiss_stale_reviews           = bool
-      pull_request_bypassers          = list(string)
-      required_approving_review_count = number
-    })
+    # required_pull_request_reviews = object({
+    #   dismiss_stale_reviews           = bool
+    #   pull_request_bypassers          = list(string)
+    #   required_approving_review_count = number
+    # })
     required_status_checks = object({
       strict = bool
     })
