@@ -11,10 +11,10 @@ resource "github_repository" "repo" {
   description  = "IaC for Github resources with Terraform"
   homepage_url = ""
 
-  template {
-    owner      = "jazzlyn"
-    repository = "repo-template-terraform"
-  }
+  # template {
+  #   owner      = "jazzlyn"
+  #   repository = "repo-template-terraform"
+  # }
 
   visibility = "public"
 
