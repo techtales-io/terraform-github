@@ -11,25 +11,27 @@
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
 
-[![Terraform][terraform-shield]][terraform-url]
+[![nix][nix-shield]][nix-url]
 [![pre-commit][pre-commit-shield]][pre-commit-url]
 [![taskfile][taskfile-shield]][taskfile-url]
+[![terraform][terraform-shield]][terraform-url]
 
-# Github with Terraform
+# Terraform Github infra for techtales-io
 
-Github Infrastructure as code with Terraform and Mineiros Modules
+Github Infrastructure as code with Terraform.
 
 <details>
   <summary style="font-size:1.2em;">Table of Contents</summary>
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Structure](#structure)
 - [Code-Style](#code-style)
   - [Terraform](#terraform)
 - [Getting Started](#getting-started)
   - [Prerequisties](#prerequisties)
   - [Initialize repository](#initialize-repository)
+- [SOPS Encryption / Decryption](#sops-encryption--decryption)
+- [ENV](#env)
 - [Terraform docs](#terraform-docs)
   - [Requirements](#requirements)
   - [Providers](#providers)
@@ -40,21 +42,6 @@ Github Infrastructure as code with Terraform and Mineiros Modules
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 </details>
-
-## Structure
-
-```console
-.
-├── .github
-│   └── workflows
-│       └── ci.yaml               # github ci configuration
-├── organization                  # organisation and member config
-├── repositories                  # repository configuration
-├── main.tf                       # locals and module configuration
-├── providers.tf                  # provider configuration
-├── README.md                     # this document
-└── secrets.sops.yaml             # secrets for the github ci
-```
 
 ## Code-Style
 
@@ -71,22 +58,14 @@ Github Infrastructure as code with Terraform and Mineiros Modules
 
 Pattern: `[a-z_]+`
 
-#### Naming of Google Cloud resources
-
-- lower-case characters
-- hyphen
-
-Pattern: `[a-z-]+`
-
 ## Getting Started
 
 ### Prerequisties
 
-- [terraform][terraform-url]
 - [pre-commit][pre-commit-url]
+- [terraform][terraform-url]
 - [terraform-docs][terraform-docs]
 - [tflint][tflint]
-- [yamllint][yamllint]
 - [tfsec][tfsec]
 
 ### Initialize repository
@@ -97,6 +76,14 @@ Terraform and pre-commit framework need to get initialized.
 task terraform:init
 task pre-commit:init
 ```
+
+## SOPS Encryption / Decryption
+
+Encryption with SOPS and age is in place.
+
+## ENV
+
+Provide the content of `secrets.sops.yaml` as `.envrc`, f.e. with direnv.
 
 ## Terraform docs
 
@@ -147,7 +134,6 @@ No outputs.
 [terraform-best-practices]: https://www.terraform-best-practices.com/naming
 [terraform-docs]: https://github.com/terraform-docs/terraform-docs
 [tflint]: https://github.com/terraform-linters/tflint
-[yamllint]: https://github.com/adrienverge/yamllint
 [tfsec]: https://aquasecurity.github.io/tfsec
 
 <!-- Badges -->
@@ -158,3 +144,5 @@ No outputs.
 [pre-commit-url]: https://github.com/pre-commit/pre-commit
 [taskfile-shield]: https://img.shields.io/badge/taskfile-enabled-brightgreen?logo=task
 [taskfile-url]: https://taskfile.dev/
+[nix-shield]: https://img.shields.io/badge/nix-enabled-brightgreen?logo=nixos
+[nix-url]: https://search.nixos.org/packages
