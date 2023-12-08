@@ -3,15 +3,17 @@
 # --------------------------------------------------------------------------------
 
 terraform {
-  required_version = ">= 1.3.0, <= 1.5.5"
+  required_version = ">= 1.5.0, <= 1.6.5"
   required_providers {
+    # https://registry.terraform.io/providers/carlpett/sops/latest/docs
     sops = {
       source  = "carlpett/sops"
-      version = "0.7.1"
+      version = "1.0.0"
     }
+    # https://registry.terraform.io/providers/integrations/github/latest/docs
     github = {
       source  = "integrations/github"
-      version = "4.31.0"
+      version = "5.42.0"
     }
   }
   backend "s3" {
@@ -24,22 +26,13 @@ terraform {
   }
 }
 
-data "sops_file" "users" {
-  source_file = "users.sops.yaml"
-}
-
-locals {
-  all_users     = nonsensitive(yamldecode(data.sops_file.users.raw))
-  members       = local.all_users.members
-  collaborators = local.all_users.collaborators
-}
-
 module "organization" {
-  source  = "./organization"
-  members = local.members
+  source        = "./organization"
+  memberships   = local.memberships
+  billing_email = var.billing_email
+  webhook_arc   = var.webhook_arc
 }
 
 module "repositories" {
-  source        = "./repositories"
-  collaborators = local.collaborators
+  source = "./repositories"
 }

@@ -5,6 +5,6 @@
 provider "sops" {}
 
 provider "github" {
-  owner = var.github_owner
+  owner = "techtales-io"
   token = var.github_token
 }

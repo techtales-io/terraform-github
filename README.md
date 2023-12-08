@@ -106,15 +106,13 @@ task pre-commit:init
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3.0, <= 1.5.5 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | 4.31.0 |
-| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 0.7.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.6.5 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | 5.42.0 |
+| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.0.0 |
 
 ### Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_sops"></a> [sops](#provider\_sops) | 0.7.1 |
+No providers.
 
 ### Modules
 
@@ -125,16 +123,15 @@ task pre-commit:init
 
 ### Resources
 
-| Name | Type |
-|------|------|
-| [sops_file.users](https://registry.terraform.io/providers/carlpett/sops/0.7.1/docs/data-sources/file) | data source |
+No resources.
 
 ### Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_github_owner"></a> [github\_owner](#input\_github\_owner) | github owner / organization | `string` | n/a | yes |
+| <a name="input_billing_email"></a> [billing\_email](#input\_billing\_email) | billing email for github organization | `string` | n/a | yes |
 | <a name="input_github_token"></a> [github\_token](#input\_github\_token) | github token from automation user | `string` | n/a | yes |
+| <a name="input_webhook_arc"></a> [webhook\_arc](#input\_webhook\_arc) | webhook for arc webhook resource | `string` | n/a | yes |
 
 ### Outputs
 

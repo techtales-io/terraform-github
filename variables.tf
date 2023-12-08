@@ -2,12 +2,17 @@
 # CONFIGURE VARIABLES
 # --------------------------------------------------------------------------------
 
-variable "github_owner" {
-  description = "github owner / organization"
+variable "github_token" {
+  description = "github token from automation user"
   type        = string
 }
 
-variable "github_token" {
-  description = "github token from automation user"
+variable "billing_email" {
+  description = "billing email for github organization"
+  type        = string
+}
+
+variable "webhook_arc" {
+  description = "webhook for arc webhook resource"
   type        = string
 }
