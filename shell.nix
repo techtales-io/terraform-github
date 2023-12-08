@@ -3,11 +3,8 @@ let
 in
   pkgs.mkShell {
     packages = [
-      # base packages
-      pkgs.pre-commit
-      pkgs.tig
-      # for install
       pkgs.direnv
+      pkgs.pre-commit
       pkgs.terraform
       pkgs.terraform-docs
       pkgs.tflint
