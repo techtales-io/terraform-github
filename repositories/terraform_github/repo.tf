@@ -16,7 +16,7 @@ resource "github_repository" "repo" {
     repository = "repo-template-terraform"
   }
 
-  visibility = var.settings.visibility
+  visibility = "public"
 
   topics = [
     "terraform",
