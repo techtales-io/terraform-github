@@ -85,6 +85,27 @@ Encryption with SOPS and age is in place.
 
 Provide the content of `secrets.sops.yaml` as `.envrc`, f.e. with direnv.
 
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
+<!-- Links -->
+
+[terraform-best-practices]: https://www.terraform-best-practices.com/naming
+[terraform-docs]: https://github.com/terraform-docs/terraform-docs
+[tflint]: https://github.com/terraform-linters/tflint
+[tfsec]: https://aquasecurity.github.io/tfsec
+
+<!-- Badges -->
+
+[terraform-shield]: https://img.shields.io/badge/terraform-1.x-844fba?logo=terraform
+[terraform-url]: https://www.terraform.io/
+[pre-commit-shield]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit
+[pre-commit-url]: https://github.com/pre-commit/pre-commit
+[taskfile-shield]: https://img.shields.io/badge/taskfile-enabled-brightgreen?logo=task
+[taskfile-url]: https://taskfile.dev/
+[nix-shield]: https://img.shields.io/badge/nix-enabled-brightgreen?logo=nixos
+[nix-url]: https://search.nixos.org/packages
+
 ## Terraform docs
 
 <!-- prettier-ignore-start -->
@@ -125,24 +146,3 @@ No resources.
 No outputs.
 <!-- END_TF_DOCS -->
 <!-- prettier-ignore-end -->
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
-<!-- Links -->
-
-[terraform-best-practices]: https://www.terraform-best-practices.com/naming
-[terraform-docs]: https://github.com/terraform-docs/terraform-docs
-[tflint]: https://github.com/terraform-linters/tflint
-[tfsec]: https://aquasecurity.github.io/tfsec
-
-<!-- Badges -->
-
-[terraform-shield]: https://img.shields.io/badge/terraform-1.x-844fba?logo=terraform
-[terraform-url]: https://www.terraform.io/
-[pre-commit-shield]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit
-[pre-commit-url]: https://github.com/pre-commit/pre-commit
-[taskfile-shield]: https://img.shields.io/badge/taskfile-enabled-brightgreen?logo=task
-[taskfile-url]: https://taskfile.dev/
-[nix-shield]: https://img.shields.io/badge/nix-enabled-brightgreen?logo=nixos
-[nix-url]: https://search.nixos.org/packages
