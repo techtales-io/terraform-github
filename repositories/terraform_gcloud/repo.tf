@@ -16,10 +16,12 @@ resource "github_repository" "repo" {
     repository = "repo-template-terraform"
   }
 
-  visibility = var.settings.visibility
+  #tfsec:ignore:github-repositories-private
+  visibility = "public"
 
   topics = [
     "terraform",
+    "google-cloud",
   ]
 
   auto_init          = var.settings.auto_init

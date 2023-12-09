@@ -25,9 +25,9 @@ module "mkdocs_blog" {
 }
 
 module "terraform_gcloud" {
-  source   = "./terraform_gcloud"
-  settings = local.settings
-  # branch_protections = local.branch_protections
+  source             = "./terraform_gcloud"
+  settings           = local.settings
+  branch_protections = local.branch_protections
 }
 
 module "terraform_github" {
