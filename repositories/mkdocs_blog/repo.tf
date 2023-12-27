@@ -16,7 +16,7 @@ resource "github_repository" "repo" {
     repository = "repo-template-basic"
   }
 
-  visibility = var.settings.visibility
+  visibility = "private"
 
   topics = [
     "techtales",
