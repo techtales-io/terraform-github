@@ -83,7 +83,7 @@ Encryption with SOPS and age is in place.
 
 ## ENV
 
-Provide the content of `secrets.sops.yaml` as `.envrc`, f.e. with direnv.
+Provide `GITHUB_TOKEN`, f.e. with direnv.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
