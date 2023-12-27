@@ -6,7 +6,7 @@
 # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/organization_webhook
 resource "github_organization_webhook" "arc" {
   configuration {
-    url          = var.webhook_arc
+    url          = data.sops_file.secrets.data["webhook_arc"]
     content_type = "json"
     insecure_ssl = false
   }

@@ -135,11 +135,7 @@ No resources.
 
 ### Inputs
 
-| Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
-| <a name="input_billing_email"></a> [billing\_email](#input\_billing\_email) | billing email for github organization | `string` | n/a | yes |
-| <a name="input_github_token"></a> [github\_token](#input\_github\_token) | github token from automation user | `string` | n/a | yes |
-| <a name="input_webhook_arc"></a> [webhook\_arc](#input\_webhook\_arc) | webhook for arc webhook resource | `string` | n/a | yes |
+No inputs.
 
 ### Outputs
 

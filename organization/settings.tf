@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------------
 
 resource "github_organization_settings" "techtales_io" {
-  billing_email = var.billing_email
+  billing_email = data.sops_file.secrets.data["billing_email"]
   company       = "techtales.io"
   name          = "techtales.io"
   blog          = "https://techtales.io"

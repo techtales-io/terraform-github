@@ -5,15 +5,15 @@
 terraform {
   required_version = ">= 1.5.0, <= 1.6.5"
   required_providers {
-    # https://registry.terraform.io/providers/carlpett/sops/latest/docs
-    sops = {
-      source  = "carlpett/sops"
-      version = "1.0.0"
-    }
     # https://registry.terraform.io/providers/integrations/github/latest/docs
     github = {
       source  = "integrations/github"
       version = "5.42.0"
+    }
+    # https://registry.terraform.io/providers/carlpett/sops/latest/docs
+    sops = {
+      source  = "carlpett/sops"
+      version = "1.0.0"
     }
   }
   backend "s3" {
@@ -27,10 +27,8 @@ terraform {
 }
 
 module "organization" {
-  source        = "./organization"
-  memberships   = local.memberships
-  billing_email = var.billing_email
-  webhook_arc   = var.webhook_arc
+  source      = "./organization"
+  memberships = local.memberships
 }
 
 module "repositories" {
