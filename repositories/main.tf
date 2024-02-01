@@ -24,6 +24,12 @@ module "mkdocs_blog" {
   # branch_protections = local.branch_protections
 }
 
+module "techtales_io_github_io" {
+  source             = "./techtales_io_github_io"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "terraform_gcloud" {
   source             = "./terraform_gcloud"
   settings           = local.settings
