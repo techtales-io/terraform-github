@@ -8,24 +8,24 @@ projects:
     terraform_version: v1.5.7
     autoplan:
       when_modified: ["*.tf", "**/*.tf"]
-    workflows:
-      custom:
-        plan:
-          steps:
-            - env:
-                name: SOPS_AGE_KEY_FILE
-                value: /home/atlantis/.config/sops/age/terraform-github.txt
-            - run: env | grep USER_NAME
-            - run: ls $SOPS_AGE_KEY_FILE
-            - run: echo $USER_NAME
-            - run: if [ $USER_NAME != "tyriis" ] && [ $USER_NAME != "jazzlyn" ]; then echo "NO!" && exit 1; fi
-            - init
-            - plan
-        apply:
-          steps:
-            - env:
-                  name: SOPS_AGE_KEY_FILE
-                  value: /home/atlantis/.config/sops/age/terraform-github.txt
-            - run: echo $USER_NAME
-            - run: if [ $USER_NAME != "tyriis" ] && [ $USER_NAME != "jazzlyn" ]; then echo "NO!" && exit 1; fi
-            - apply
+workflows:
+  custom:
+    plan:
+      steps:
+        - env:
+            name: SOPS_AGE_KEY_FILE
+            value: /home/atlantis/.config/sops/age/terraform-github.txt
+        - run: env | grep ATLANTIS_GH_APP_SLUG
+        - run: ls $SOPS_AGE_KEY_FILE
+        - run: echo $USER_NAME
+        - run: if [ $USER_NAME != "tyriis" ] && [ $USER_NAME != "jazzlyn" ]; then echo "NO!" && exit 1; fi
+        - init
+        - plan
+    apply:
+      steps:
+        - env:
+              name: SOPS_AGE_KEY_FILE
+              value: /home/atlantis/.config/sops/age/terraform-github.txt
+        - run: echo $USER_NAME
+        - run: if [ $USER_NAME != "tyriis" ] && [ $USER_NAME != "jazzlyn" ]; then echo "NO!" && exit 1; fi
+        - apply
