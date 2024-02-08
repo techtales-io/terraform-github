@@ -1,0 +1,10 @@
+---
+version: 3
+automerge: true
+delete_source_branch_on_merge: true
+projects:
+  - name: terraform-github
+    dir: .
+    terraform_version: v1.5.7
+    autoplan:
+      when_modified: ["*.tf", "**/*.tf"]
