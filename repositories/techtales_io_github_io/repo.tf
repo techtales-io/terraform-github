@@ -19,6 +19,15 @@ resource "github_repository" "repo" {
     "website",
   ]
 
+  pages {
+    build_type = "workflow"
+
+    source {
+      branch = "main"
+      path   = "/"
+    }
+  }
+
   auto_init          = var.settings.auto_init
   archive_on_destroy = var.settings.archive_on_destroy
 
