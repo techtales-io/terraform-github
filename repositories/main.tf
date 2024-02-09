@@ -65,3 +65,9 @@ module "terraform_discord" {
   settings = local.settings
   # branch_protections = local.branch_protections
 }
+
+module "test1" {
+  source   = "./test1"
+  settings = local.settings
+  # branch_protections = local.branch_protections
+}
