@@ -61,7 +61,7 @@ module "website" {
 }
 
 module "terraform_discord" {
-  source   = "./terraform-discord"
-  settings = local.settings
-  # branch_protections = local.branch_protections
+  source             = "./terraform-discord"
+  settings           = local.settings
+  branch_protections = local.branch_protections
 }
