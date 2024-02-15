@@ -1,0 +1,8 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  platform: "github",
+  platformCommit: true,
+  username: "techtales-bot[bot]",
+  gitAuthor: "techtales-bot <118013669+techtales-bot[bot]@users.noreply.github.com>",
+  repositories: ["techtales-io/terraform-github"],
+}
