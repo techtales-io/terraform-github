@@ -24,6 +24,12 @@ module "mkdocs-blog" {
   # branch_protections = local.branch_protections
 }
 
+module "renovate-config" {
+  source             = "./renovate-config"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "techtales-io-github-io" {
   source             = "./techtales-io-github-io"
   settings           = local.settings
