@@ -12,56 +12,56 @@ terraform {
   }
 }
 
-module "backstage_docs" {
-  source             = "./backstage_docs"
+module "backstage-docs" {
+  source             = "./backstage-docs"
   settings           = local.settings
   branch_protections = local.branch_protections
 }
 
-module "mkdocs_blog" {
-  source   = "./mkdocs_blog"
+module "mkdocs-blog" {
+  source   = "./mkdocs-blog"
   settings = local.settings
   # branch_protections = local.branch_protections
 }
 
-module "techtales_io_github_io" {
-  source             = "./techtales_io_github_io"
+module "techtales-io-github-io" {
+  source             = "./techtales-io-github-io"
   settings           = local.settings
   branch_protections = local.branch_protections
 }
 
-module "terraform_gcloud" {
-  source             = "./terraform_gcloud"
+module "terraform-discord" {
+  source             = "./terraform-discord"
   settings           = local.settings
   branch_protections = local.branch_protections
 }
 
-module "terraform_github" {
-  source             = "./terraform_github"
+module "terraform-gcloud" {
+  source             = "./terraform-gcloud"
   settings           = local.settings
   branch_protections = local.branch_protections
 }
 
-module "terraform_gworkspace" {
-  source   = "./terraform_gworkspace"
+module "terraform-github" {
+  source             = "./terraform-github"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
+module "terraform-gworkspace" {
+  source   = "./terraform-gworkspace"
   settings = local.settings
   # branch_protections = local.branch_protections
 }
 
-module "terraform_vault" {
-  source   = "./terraform_vault"
+module "terraform-vault" {
+  source   = "./terraform-vault"
   settings = local.settings
   # branch_protections = local.branch_protections
 }
 
 module "website" {
   source             = "./website"
-  settings           = local.settings
-  branch_protections = local.branch_protections
-}
-
-module "terraform_discord" {
-  source             = "./terraform-discord"
   settings           = local.settings
   branch_protections = local.branch_protections
 }
