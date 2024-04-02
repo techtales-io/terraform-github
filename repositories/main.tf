@@ -66,6 +66,12 @@ module "terraform-gworkspace" {
   # branch_protections = local.branch_protections
 }
 
+module "terraform-minio" {
+  source             = "./terraform-minio"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "terraform-vault" {
   source   = "./terraform-vault"
   settings = local.settings
