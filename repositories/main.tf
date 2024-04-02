@@ -18,11 +18,11 @@ module "backstage-docs" {
   branch_protections = local.branch_protections
 }
 
-module "github-workflows" {
-  source             = "./github-workflows"
-  settings           = local.settings
-  branch_protections = local.branch_protections
-}
+# module "github-workflows" {
+#   source             = "./github-workflows"
+#   settings           = local.settings
+#   branch_protections = local.branch_protections
+# }
 
 module "mkdocs-blog" {
   source   = "./mkdocs-blog"
@@ -30,11 +30,11 @@ module "mkdocs-blog" {
   # branch_protections = local.branch_protections
 }
 
-module "renovate-config" {
-  source             = "./renovate-config"
-  settings           = local.settings
-  branch_protections = local.branch_protections
-}
+# module "renovate-config" {
+#   source             = "./renovate-config"
+#   settings           = local.settings
+#   branch_protections = local.branch_protections
+# }
 
 module "techtales-io-github-io" {
   source             = "./techtales-io-github-io"
