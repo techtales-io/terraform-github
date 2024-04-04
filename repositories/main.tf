@@ -72,6 +72,12 @@ module "terraform-minio" {
   branch_protections = local.branch_protections
 }
 
+module "terraform-unifi" {
+  source             = "./terraform-unifi"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "terraform-vault" {
   source   = "./terraform-vault"
   settings = local.settings
