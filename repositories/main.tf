@@ -89,3 +89,9 @@ module "website" {
   settings           = local.settings
   branch_protections = local.branch_protections
 }
+
+module "testrepo" {
+  source             = "./testrepo"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
