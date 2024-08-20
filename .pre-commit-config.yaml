@@ -17,7 +17,7 @@ repos:
           - --notitle
 
   - repo: https://github.com/antonbabenko/pre-commit-terraform
-    rev: v1.92.0
+    rev: v1.92.2
     hooks:
       - id: terraform_docs
         args:
@@ -27,9 +27,9 @@ repos:
       - id: terraform_tflint
         args:
           - --args=--config=__GIT_WORKING_DIR__/.tflint.hcl
-      - id: terraform_tfsec
+      - id: terraform_trivy
         args:
-          - --args=--config-file=__GIT_WORKING_DIR__/.tfsec.yaml
+          - --args=--ignorefile=__GIT_WORKING_DIR__/.trivyignore.yaml
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.6.0
@@ -52,6 +52,8 @@ repos:
       - id: trailing-whitespace
         args:
           - --markdown-linebreak-ext=md
+      - id: no-commit-to-branch
+        args: ["--branch", "main"]
 
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.35.1
@@ -68,7 +70,7 @@ repos:
       - id: remove-tabs
 
   - repo: https://github.com/sirosen/texthooks
-    rev: 0.6.6
+    rev: 0.6.7
     hooks:
       - id: fix-smartquotes
       - id: fix-ligatures
