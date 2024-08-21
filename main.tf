@@ -3,12 +3,12 @@
 # --------------------------------------------------------------------------------
 
 terraform {
-  required_version = ">= 1.5.0, <= 1.9.0"
+  required_version = ">= 1.5.0, <= 1.9.5"
   required_providers {
     # https://registry.terraform.io/providers/integrations/github/latest/docs
     github = {
       source  = "integrations/github"
-      version = "6.2.2"
+      version = "6.2.3"
     }
     # https://registry.terraform.io/providers/carlpett/sops/latest/docs
     sops = {
@@ -22,7 +22,9 @@ terraform {
     skip_credentials_validation = true
     skip_metadata_api_check     = true
     skip_region_validation      = true
-    force_path_style            = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
+    use_path_style              = true
   }
 }
 
