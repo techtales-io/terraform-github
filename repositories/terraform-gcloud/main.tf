@@ -9,5 +9,13 @@ terraform {
       source  = "integrations/github"
       version = "6.2.3"
     }
+    sops = {
+      source  = "carlpett/sops"
+      version = "1.1.1"
+    }
   }
+}
+
+data "sops_file" "secrets" {
+  source_file = "secrets.sops.yaml"
 }
