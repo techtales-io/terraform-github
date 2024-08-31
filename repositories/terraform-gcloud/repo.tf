@@ -16,8 +16,9 @@ resource "github_repository" "repo" {
     repository = "repo-template-terraform"
   }
 
-  #tfsec:ignore:github-repositories-private
-  visibility = "public"
+  visibility = "private"
+  # workaround for https://github.com/integrations/terraform-provider-github/issues/2145
+  security_and_analysis {}
 
   topics = [
     "terraform",
