@@ -11,7 +11,6 @@ resource "github_repository" "repo" {
   description  = "github pages for techtales.io"
   homepage_url = ""
 
-  #tfsec:ignore:github-repositories-private
   visibility = "public"
 
   topics = [
