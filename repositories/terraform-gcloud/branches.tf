@@ -10,10 +10,10 @@ resource "github_branch_default" "repo" {
   branch     = "main"
 }
 
-# # this resource is used to create the branch protection for the default branch
-# # https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection
-# # default values can be found in the locals.tf file
-# # to overwrite just update the desired values
+# this resource is used to create the branch protection for the default branch
+# https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection
+# default values can be found in the locals.tf file
+# to overwrite just update the desired values
 # resource "github_branch_protection" "default" {
 #   repository_id  = github_repository.repo.name # do not change
 #   pattern        = github_branch_default.repo.branch # do not change
