@@ -72,6 +72,12 @@ module "terraform-minio" {
   branch_protections = local.branch_protections
 }
 
+module "terraform-opnsense" {
+  source             = "./terraform-opnsense"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "terraform-unifi" {
   source             = "./terraform-unifi"
   settings           = local.settings

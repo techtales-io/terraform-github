@@ -111,9 +111,9 @@ Provide `GITHUB_TOKEN`, f.e. with direnv.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.7.3 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | 5.45.0 |
-| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.0.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.11.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | 6.6.0 |
+| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.1.1 |
 
 ### Providers
 
