@@ -13,7 +13,7 @@ terraform {
     # https://registry.terraform.io/providers/carlpett/sops/latest/docs
     sops = {
       source  = "carlpett/sops"
-      version = "1.1.1"
+      version = "1.2.0"
     }
   }
   backend "s3" {
