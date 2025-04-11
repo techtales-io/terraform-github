@@ -2,7 +2,7 @@
 experimental = true
 
 [tools]
-direnv = "2.34.0"
+direnv = "2.36.0"
 pre-commit = "3.8.0"
 sops = "3.9.0"
 terraform = "1.9.5"
