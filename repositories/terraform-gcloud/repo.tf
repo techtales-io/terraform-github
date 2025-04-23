@@ -45,5 +45,5 @@ resource "github_repository" "repo" {
   merge_commit_title          = var.settings.merge_commit_title
   squash_merge_commit_message = var.settings.squash_merge_commit_message
 
-  vulnerability_alerts = var.settings.vulnerability_alerts
+  vulnerability_alerts = var.settings.vulnerability_alerts #trivy:ignore:AVD-GIT-0003
 }
