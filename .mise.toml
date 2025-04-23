@@ -3,7 +3,7 @@ experimental = true
 
 [tools]
 direnv = "2.36.0"
-sops = "3.9.0"
+sops = "3.10.2"
 terraform = "1.10.5"
 trivy = "0.61.1"
 terraform-docs = "0.20.0"
