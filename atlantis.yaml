@@ -7,4 +7,4 @@ projects:
     # terraform_version: v1.10.5
     dir: .
     autoplan:
-      when_modified: ["*.tf", "**/*.tf"]
+      when_modified: ["*.tf", "**/*.tf", "secrets.sops.yaml"]
