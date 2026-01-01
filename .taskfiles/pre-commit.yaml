@@ -1,12 +1,17 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3"
 
 tasks:
   init:
-    desc: Initialize pre-commit hooks
+    desc: initialize pre-commit hooks
+    status:
+      - test -f .git/hooks/pre-commit
     cmds:
       - pre-commit install --install-hooks
+
   run:
-    desc: Run pre-commit
+    desc: run pre-commit
+    deps: [init]
     cmds:
       - pre-commit run --all-files
