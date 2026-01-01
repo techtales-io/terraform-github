@@ -1,6 +1,5 @@
-<!-- markdownlint-disable MD041 -->
 <!-- markdownlint-disable MD033 -->
-<!-- markdownlint-disable MD028 -->
+<!-- markdownlint-disable MD041 -->
 
 <!-- PROJECT SHIELDS -->
 <!--
@@ -105,6 +104,7 @@ Provide `GITHUB_TOKEN`, f.e. with direnv.
 
 ## Terraform docs
 
+<!-- markdownlint-disable -->
 <!-- prettier-ignore-start -->
 <!-- BEGIN_TF_DOCS -->
 ### Requirements
@@ -112,8 +112,8 @@ Provide `GITHUB_TOKEN`, f.e. with direnv.
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.10.5 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | 6.6.0 |
-| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.2.0 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | 6.9.0 |
+| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.3.0 |
 
 ### Providers
 
@@ -139,3 +139,4 @@ No inputs.
 No outputs.
 <!-- END_TF_DOCS -->
 <!-- prettier-ignore-end -->
+<!-- markdownlint-enable -->
