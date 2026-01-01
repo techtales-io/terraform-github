@@ -18,6 +18,7 @@ variable "settings" {
     allow_merge_commit          = bool
     allow_rebase_merge          = bool
     allow_squash_merge          = bool
+    allow_update_branch         = bool
     delete_branch_on_merge      = bool
     merge_commit_message        = string
     merge_commit_title          = string
