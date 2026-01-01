@@ -11,11 +11,6 @@ resource "github_repository" "repo" {
   description  = "backstage documentation"
   homepage_url = ""
 
-  template {
-    owner      = "jazzlyn"
-    repository = "repo-template-basic"
-  }
-
   visibility = "public"
 
   topics = [
