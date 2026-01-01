@@ -18,7 +18,7 @@ terraform {
   }
   backend "s3" {
     bucket                      = "terraform"
-    key                         = "techtales/github/terraform.tfstate"
+    key                         = "github/techtales-io/terraform.tfstate"
     skip_credentials_validation = true
     skip_metadata_api_check     = true
     skip_region_validation      = true
