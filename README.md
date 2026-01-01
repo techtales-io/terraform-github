@@ -24,12 +24,12 @@ Github Infrastructure as code with Terraform.
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Code-Style](#code-style)
-  - [Terraform](#terraform)
 - [Getting Started](#getting-started)
   - [Prerequisties](#prerequisties)
   - [Initialize repository](#initialize-repository)
-- [SOPS Encryption / Decryption](#sops-encryption--decryption)
-- [ENV](#env)
+- [Authentication](#authentication)
+  - [with ENV](#with-env)
+  - [with Github CLI](#with-github-cli)
 - [Terraform docs](#terraform-docs)
   - [Requirements](#requirements)
   - [Providers](#providers)
@@ -43,18 +43,7 @@ Github Infrastructure as code with Terraform.
 
 ## Code-Style
 
-### Terraform
-
-#### Best practices
-
 [terraform-best-practices.com][terraform-best-practices]
-
-#### Naming of Terraform resources
-
-- lower-case characters
-- underscores
-
-Pattern: `[a-z_]+`
 
 ## Getting Started
 
@@ -75,13 +64,15 @@ task terraform:init
 task pre-commit:init
 ```
 
-## SOPS Encryption / Decryption
+## Authentication
 
-Encryption with SOPS and age is in place.
-
-## ENV
+### with ENV
 
 Provide `GITHUB_TOKEN`, f.e. with direnv.
+
+### with Github CLI
+
+Run `gh auth login` to authenticate with Github.
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
