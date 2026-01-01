@@ -6,6 +6,4 @@
 provider "sops" {}
 
 # https://registry.terraform.io/providers/integrations/github/latest/docs
-provider "github" {
-  owner = "techtales-io"
-}
+provider "github" {}
