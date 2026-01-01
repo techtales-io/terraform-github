@@ -11,11 +11,6 @@ resource "github_repository" "repo" {
   description  = "source repo for website"
   homepage_url = ""
 
-  template {
-    owner      = "jazzlyn"
-    repository = "repo-template-basic"
-  }
-
   visibility = "private"
 
   topics = [

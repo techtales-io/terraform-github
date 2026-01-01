@@ -11,11 +11,6 @@ resource "github_repository" "repo" {
   description  = "IaC for Google Cloud resources with Terraform"
   homepage_url = ""
 
-  template {
-    owner      = "jazzlyn"
-    repository = "repo-template-terraform"
-  }
-
   visibility = "private"
   # workaround for https://github.com/integrations/terraform-provider-github/issues/2145
   security_and_analysis {}

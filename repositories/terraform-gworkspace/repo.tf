@@ -11,11 +11,6 @@ resource "github_repository" "repo" {
   description  = "IaC for Google Workspace resources with Terraform"
   homepage_url = ""
 
-  template {
-    owner      = "jazzlyn"
-    repository = "repo-template-terraform"
-  }
-
   visibility = "private"
 
   topics = [

@@ -11,11 +11,6 @@ resource "github_repository" "repo" {
   description  = "central renovate configuration"
   homepage_url = ""
 
-  # template {
-  #   owner      = "jazzlyn"
-  #   repository = "repo-template-terraform"
-  # }
-
   visibility = "public"
 
   topics = [
