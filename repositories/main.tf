@@ -18,6 +18,12 @@ module "backstage-docs" {
   branch_protections = local.branch_protections
 }
 
+module "containers" {
+  source             = "./containers"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "github-workflows" {
   source             = "./github-workflows"
   settings           = local.settings
