@@ -38,6 +38,7 @@ resource "github_repository" "repo" {
   allow_merge_commit          = var.settings.allow_merge_commit
   allow_rebase_merge          = var.settings.allow_rebase_merge
   allow_squash_merge          = var.settings.allow_squash_merge
+  allow_update_branch         = var.settings.allow_update_branch
   delete_branch_on_merge      = var.settings.delete_branch_on_merge
   merge_commit_message        = var.settings.merge_commit_message
   merge_commit_title          = var.settings.merge_commit_title

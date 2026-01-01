@@ -26,6 +26,7 @@ locals {
     allow_merge_commit          = true
     allow_rebase_merge          = true
     allow_squash_merge          = true
+    allow_update_branch         = true
     delete_branch_on_merge      = true
     merge_commit_message        = "PR_TITLE"
     merge_commit_title          = "MERGE_MESSAGE"
