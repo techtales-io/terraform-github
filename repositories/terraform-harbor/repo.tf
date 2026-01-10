@@ -7,25 +7,16 @@
 # default values can be found in the locals.tf file
 # to overwrite just update the desired values
 resource "github_repository" "repo" {
-  name         = "techtales-io.github.io"
-  description  = "github pages for techtales.io"
+  name         = "terraform-harbor"
+  description  = "IaC for Harbor resources with Terraform"
   homepage_url = ""
 
   visibility = "public"
 
   topics = [
-    "techtales",
-    "website",
+    "terraform",
+    "harbor",
   ]
-
-  pages {
-    build_type = "workflow"
-
-    # source {
-    #   branch = "main"
-    #   path   = "/"
-    # }
-  }
 
   auto_init          = var.settings.auto_init
   archive_on_destroy = var.settings.archive_on_destroy
