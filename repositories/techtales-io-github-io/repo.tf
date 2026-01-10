@@ -21,10 +21,10 @@ resource "github_repository" "repo" {
   pages {
     build_type = "workflow"
 
-    source {
-      branch = "main"
-      path   = "/"
-    }
+    # source {
+    #   branch = "main"
+    #   path   = "/"
+    # }
   }
 
   auto_init          = var.settings.auto_init
