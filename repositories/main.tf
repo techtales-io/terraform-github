@@ -90,6 +90,12 @@ module "terraform-vault" {
   # branch_protections = local.branch_protections
 }
 
+module "terraform-harbor" {
+  source             = "./terraform-harbor"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "website" {
   source             = "./website"
   settings           = local.settings
