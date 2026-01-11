@@ -96,6 +96,12 @@ module "terraform-harbor" {
   branch_protections = local.branch_protections
 }
 
+module "terraform-pocket-id" {
+  source             = "./terraform-pocket-id"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "website" {
   source             = "./website"
   settings           = local.settings

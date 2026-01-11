@@ -7,20 +7,18 @@
 # default values can be found in the locals.tf file
 # to overwrite just update the desired values
 resource "github_repository" "repo" {
-  name         = "terraform-gcloud"
-  description  = "IaC for Google Cloud resources with Terraform"
+  name         = "terraform-pocket-id"
+  description  = "IaC for Pocket ID resources with Terraform"
   homepage_url = ""
 
-  visibility = "private"
-  # workaround for https://github.com/integrations/terraform-provider-github/issues/2145
-  # security_and_analysis {}
+  visibility = "public"
 
   topics = [
     "terraform",
-    "google-cloud",
+    "pocket-id",
   ]
 
-  auto_init          = var.settings.auto_init
+  auto_init          = false
   archive_on_destroy = var.settings.archive_on_destroy
 
   has_discussions = var.settings.has_discussions
