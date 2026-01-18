@@ -11,7 +11,7 @@ resource "github_repository" "repo" {
   description  = "IaC for unifi resources with Terraform"
   homepage_url = ""
 
-  visibility = "public"
+  visibility = "private"
 
   topics = [
     "terraform",
