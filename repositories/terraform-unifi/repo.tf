@@ -22,7 +22,6 @@ resource "github_repository" "repo" {
   archive_on_destroy = var.settings.archive_on_destroy
 
   has_discussions = var.settings.has_discussions
-  has_downloads   = var.settings.has_downloads
   has_issues      = var.settings.has_issues
   has_projects    = var.settings.has_projects
   has_wiki        = var.settings.has_wiki
