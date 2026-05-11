@@ -4,7 +4,7 @@ experimental = true
 [tools]
 direnv = "2.37.1"
 sops = "3.12.2"
-terraform = "1.15.1"
+terraform = "1.15.2"
 trivy = "0.69.1"
 terraform-docs = "0.24.0"
 pre-commit = "4.6.0"
