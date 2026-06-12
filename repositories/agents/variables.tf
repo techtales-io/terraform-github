@@ -27,17 +27,17 @@ variable "settings" {
   })
 }
 
-variable "branch_protections" {
-  description = "The branch protection settings for the repositories."
-  type = map(object({
-    pattern                         = string
-    allows_deletions                = bool
-    allows_force_pushes             = bool
-    enforce_admins                  = bool
-    require_conversation_resolution = bool
-    require_signed_commits          = bool
-    required_status_checks = object({
-      strict = bool
-    })
-  }))
-}
+# variable "branch_protections" {
+#   description = "The branch protection settings for the repositories."
+#   type = map(object({
+#     pattern                         = string
+#     allows_deletions                = bool
+#     allows_force_pushes             = bool
+#     enforce_admins                  = bool
+#     require_conversation_resolution = bool
+#     require_signed_commits          = bool
+#     required_status_checks = object({
+#       strict = bool
+#     })
+#   }))
+# }

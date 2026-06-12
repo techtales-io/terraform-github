@@ -13,9 +13,9 @@ terraform {
 }
 
 module "agents" {
-  source             = "./agents"
-  settings           = local.settings
-  branch_protections = local.branch_protections
+  source   = "./agents"
+  settings = local.settings
+  # branch_protections = local.branch_protections
 }
 
 module "backstage-docs" {
