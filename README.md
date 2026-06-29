@@ -20,6 +20,7 @@ Github Infrastructure as code with Terraform.
 
 <details>
   <summary style="font-size:1.2em;">Table of Contents</summary>
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
@@ -95,16 +96,15 @@ Run `gh auth login` to authenticate with Github.
 
 ## Terraform docs
 
-<!-- markdownlint-disable -->
 <!-- prettier-ignore-start -->
 <!-- BEGIN_TF_DOCS -->
 ### Requirements
 
 | Name | Version |
-|------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.0, <= 1.10.5 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | 6.9.0 |
-| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.3.0 |
+| ---- | ------- |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.0, <= 1.15.7 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | 6.12.1 |
+| <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.4.1 |
 
 ### Providers
 
@@ -113,7 +113,7 @@ No providers.
 ### Modules
 
 | Name | Source | Version |
-|------|--------|---------|
+| ---- | ------ | ------- |
 | <a name="module_organization"></a> [organization](#module\_organization) | ./organization | n/a |
 | <a name="module_repositories"></a> [repositories](#module\_repositories) | ./repositories | n/a |
 
