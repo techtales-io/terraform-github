@@ -3,7 +3,7 @@
 # --------------------------------------------------------------------------------
 
 terraform {
-  required_version = ">= 1.10.0, <= 1.15.7"
+  required_version = ">= 1.10.0, <= 1.15.8"
   required_providers {
     github = {
       source  = "integrations/github"
