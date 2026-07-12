@@ -5,13 +5,10 @@ version: "3"
 tasks:
   init:
     desc: initialize pre-commit hooks
-    status:
-      - test -f .git/hooks/pre-commit
     cmds:
       - pre-commit install --install-hooks
 
   run:
     desc: run pre-commit
-    deps: [init]
     cmds:
       - pre-commit run --all-files
