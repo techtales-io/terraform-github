@@ -102,8 +102,8 @@ Run `gh auth login` to authenticate with Github.
 
 | Name | Version |
 | ---- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.0, <= 1.15.7 |
-| <a name="requirement_github"></a> [github](#requirement\_github) | 6.12.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.10.0, <= 1.15.8 |
+| <a name="requirement_github"></a> [github](#requirement\_github) | 6.13.0 |
 | <a name="requirement_sops"></a> [sops](#requirement\_sops) | 1.4.1 |
 
 ### Providers
