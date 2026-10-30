@@ -54,6 +54,12 @@ module "techtales-io-github-io" {
   branch_protections = local.branch_protections
 }
 
+module "terraform-cloudflare" {
+  source             = "./terraform-cloudflare"
+  settings           = local.settings
+  branch_protections = local.branch_protections
+}
+
 module "terraform-discord" {
   source             = "./terraform-discord"
   settings           = local.settings
