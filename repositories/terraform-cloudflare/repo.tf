@@ -11,7 +11,7 @@ resource "github_repository" "repo" {
   description  = "IaC for Cloudflare resources with Terraform"
   homepage_url = ""
 
-  visibility = "private"
+  visibility = "public"
 
   topics = [
     "terraform",
